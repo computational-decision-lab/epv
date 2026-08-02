@@ -2,7 +2,7 @@
 
 Paper: **Prediction Is Not Permission: Statistical Execution Authority for AI Agents**
 
-Project website: <https://colin-wang-research.github.io/epv-aaai-20260707/>
+Project website: <https://colin-wang-research.github.io/epv-aaai-20260707-site/>
 
 ## Submission Files
 
