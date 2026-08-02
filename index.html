@@ -16,12 +16,13 @@
         <span class="brand-copy"><strong>Statistical Execution Authority</strong><small>Reviewer companion</small></span>
       </a>
       <nav class="nav" aria-label="Reviewer navigation">
-        <a href="#object">Object</a>
-        <a href="#method">Method</a>
-        <a href="#theory">Theory</a>
+        <a href="#problem">Problem</a>
+        <a href="#concept">Concept</a>
+        <a href="#experiment">Experiment</a>
+        <a href="#mechanism">Mechanism</a>
         <a href="#evidence">Evidence</a>
         <a href="#limits">Limits</a>
-        <a href="#artifacts">Artifacts</a>
+        <a href="#engineering">Engineering</a>
         <a class="nav-source" href="https://github.com/colin-wang-research/epv-aaai" rel="noreferrer">GitHub</a>
       </nav>
     </div>
@@ -40,6 +41,11 @@
             paper certifies the selected action of a frozen pipeline, then routes
             it to <strong>authorize</strong>, <strong>review</strong>, or
             <strong>abstain</strong> under registered conditional-risk bounds.
+          </p>
+          <p class="reader-summary">
+            <strong>In plain language:</strong> an agent may suggest a good action,
+            and the system may choose its most convincing suggestion, but neither
+            step alone proves that the final action should be executed.
           </p>
           <div class="hero-actions">
             <a class="button button-primary" href="assets/paper/main.pdf">Read the 7-page paper</a>
@@ -70,51 +76,64 @@
       <div class="section-shell">
         <div class="section-intro">
           <p class="section-kicker">Suggested reviewer path</p>
-          <h2 id="path-title">Read the evidence chain in five stops</h2>
+          <h2 id="path-title">Read the paper in seven stops</h2>
         </div>
         <ol class="path-list">
-          <li><a href="#object"><strong>Research object</strong><span>Why selected-action risk differs from source-level safety.</span></a></li>
-          <li><a href="#method"><strong>Certification unit</strong><span>What is frozen before calibration and what receives authority.</span></a></li>
-          <li><a href="#theory"><strong>Formal basis</strong><span>Selected-risk identity, replacement, and finite-sample control.</span></a></li>
-          <li><a href="#evidence"><strong>Sealed evidence</strong><span>Primary MiniWoB result, local routing, and external transfer.</span></a></li>
-          <li><a href="#limits"><strong>Boundary</strong><span>What the paper deliberately does not claim.</span></a></li>
+          <li><a href="#problem"><strong>Reality</strong><span>Why a plausible agent action can still be unsafe to execute.</span></a></li>
+          <li><a href="#concept"><strong>Concept</strong><span>Suggestion, selection, and permission are different decisions.</span></a></li>
+          <li><a href="#experiment"><strong>Experiment</strong><span>What was frozen, measured, and held out.</span></a></li>
+          <li><a href="#mechanism"><strong>Mechanism</strong><span>How eligibility, selection, certification, and routing interact.</span></a></li>
+          <li><a href="#evidence"><strong>Evidence</strong><span>What the sealed results support and what they do not.</span></a></li>
+          <li><a href="#limits"><strong>Limits</strong><span>Where the certificate stops being applicable.</span></a></li>
+          <li><a href="#engineering"><strong>Engineering</strong><span>How the idea could be deployed without overclaiming.</span></a></li>
         </ol>
       </div>
     </section>
 
-    <section class="section-shell narrative-section" id="object" aria-labelledby="object-title">
+    <section class="section-shell narrative-section" id="problem" aria-labelledby="problem-title">
       <div class="section-header">
-        <p class="section-kicker">1. Research object</p>
-        <h2 id="object-title">The authorization target is the selected action</h2>
+        <p class="section-kicker">1. Reality: the problem</p>
+        <h2 id="problem-title">A confident suggestion is not permission to change the world</h2>
       </div>
       <div class="prose-grid">
         <div class="prose">
           <p>
-            A pipeline may receive proposals from a rule, model, planner, tool,
-            critique, or cached rationale. The paper separates three questions:
-            what a source proposes, which candidate the full pipeline selects,
-            and whether that final action has earned permission to execute.
+            Imagine an assistant that can send an email, edit a document, call an
+            API, or submit a form. It can produce a fluent plan and report high
+            confidence. The practical question is not only whether the plan sounds
+            reasonable. It is whether the exact action selected by the whole
+            system should be allowed to change external state.
           </p>
           <p>
-            The registered authority risk is conditional on authorization:
-            <span class="formula">R<sub>auth</sub>(&lambda;) = P(H = 1 | A<sub>&lambda;</sub> = 1)</span>.
-            Here <em>H</em> is the pre-registered adverse-action proxy and
-            <em>A</em> is the authorization event. It is not a claim about
-            observed production, privacy, financial, or legal harm.
+            A multi-source system may receive proposals from a planner, a rule,
+            a tool, a critic, or a cached rationale. A source can look safe in
+            isolation, while selection favors a harmful or unsupported candidate.
+            The paper therefore studies the final selected action, not the
+            confidence of an individual source.
           </p>
         </div>
         <div class="object-table-wrap">
           <table class="object-table">
             <thead>
-              <tr><th>Stage</th><th>Question</th><th>Paper treatment</th></tr>
+              <tr><th>Everyday situation</th><th>What can go wrong?</th><th>Paper's question</th></tr>
             </thead>
             <tbody>
-              <tr><td>Proposal</td><td>What does a source suggest?</td><td>Candidate evidence only</td></tr>
-              <tr><td>Selection</td><td>Which candidate wins after the pipeline?</td><td>Frozen selector output</td></tr>
-              <tr><td>Authorization</td><td>May the selected action execute?</td><td>Post-selection certificate and route</td></tr>
+              <tr><td>Many suggestions</td><td>The most confident suggestion may not be the safest.</td><td>What risk does selection create?</td></tr>
+              <tr><td>One winner</td><td>The system may choose a candidate before checking its consequences.</td><td>Which exact action won?</td></tr>
+              <tr><td>External action</td><td>A failed state change can cost time, data, or trust.</td><td>Does the winner earn authorization?</td></tr>
             </tbody>
           </table>
         </div>
+      </div>
+      <div class="plain-callout">
+        <strong>The central question:</strong>
+        after the system has selected the action it intends to execute, what
+        evidence is strong enough to permit execution?
+        The registered authority risk is
+        <span class="formula">R<sub>auth</sub>(&lambda;) = P(H = 1 | A<sub>&lambda;</sub> = 1)</span>,
+        where <em>H</em> is a pre-registered adverse-action proxy and
+        <em>A</em> is the authorization event. This is not a production,
+        privacy, financial, or legal harm guarantee.
       </div>
       <figure class="wide-figure">
         <img src="assets/figures/fig_selection_induced_risk.png" alt="Selection-induced authority risk figure showing that candidate count and pairwise ranking alone do not determine selected-action risk">
@@ -122,11 +141,87 @@
       </figure>
     </section>
 
-    <section class="band-blue" id="method" aria-labelledby="method-title">
+    <section class="band-light" id="concept" aria-labelledby="concept-title">
+      <div class="section-shell">
+        <div class="section-header">
+          <p class="section-kicker">2. Plain-language concept</p>
+          <h2 id="concept-title">Suggestion, choice, and permission are three different decisions</h2>
+          <p class="section-lede">The easiest way to read the paper is to keep these three verbs separate. Confusing them is the failure mode the paper names Selection-Induced Authority Risk, or SIAR.</p>
+        </div>
+        <div class="concept-steps">
+          <article>
+            <span class="concept-number">01</span>
+            <h3>Propose</h3>
+            <p>A model, planner, rule, or tool suggests an action. This is a belief or plan, not an authorization.</p>
+            <strong>Output: a candidate</strong>
+          </article>
+          <article>
+            <span class="concept-number">02</span>
+            <h3>Select</h3>
+            <p>The pipeline compares candidates and chooses a winner. A winner is still only the action the system intends to try.</p>
+            <strong>Output: the selected action</strong>
+          </article>
+          <article>
+            <span class="concept-number">03</span>
+            <h3>Authorize</h3>
+            <p>An independent evidence check asks whether the selected action clears its registered risk and support requirements.</p>
+            <strong>Output: authorize, review, or abstain</strong>
+          </article>
+        </div>
+        <div class="concept-rules">
+          <div><strong>Prediction is not permission.</strong><span>High confidence can identify a plausible action without proving its post-action safety.</span></div>
+          <div><strong>Selection is not permission.</strong><span>Argmax chooses the top candidate; it does not certify the consequences of that candidate.</span></div>
+          <div><strong>Authorization is conditional.</strong><span>Execution authority is earned only for the registered pipeline, evidence mode, and risk group.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell narrative-section" id="experiment" aria-labelledby="experiment-title">
+      <div class="section-header">
+        <p class="section-kicker">3. Experiment design</p>
+        <h2 id="experiment-title">The experiment asks what happens when a system must choose among candidates</h2>
+        <p class="section-lede">This is a controlled authorization study, not a claim about a deployed commercial agent. The protocol makes the candidate set, outcome label, calibration split, and holdout boundary explicit.</p>
+      </div>
+      <div class="experiment-grid">
+        <div class="experiment-table-wrap">
+          <table class="experiment-table">
+            <thead>
+              <tr><th>Protocol element</th><th>What the paper used</th><th>Why it matters</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Environment</td><td>20 resettable MiniWoB tasks</td><td>Each candidate can be evaluated from a controlled initial state.</td></tr>
+              <tr><td>Candidate set</td><td>Registered nested sets, K = 1, 2, 4, 8</td><td>The study can separate source-level behavior from winner selection.</td></tr>
+              <tr><td>Scale</td><td>4,000 fresh episodes and 32,000 candidate executions</td><td>The main result is not based on a handful of examples.</td></tr>
+              <tr><td>Splits</td><td>Development, calibration, and one-time sealed test</td><td>Threshold choice is separated from the final evaluation.</td></tr>
+              <tr><td>Outcome</td><td>Pre-registered adverse-action proxy plus utility</td><td>The paper reports both risk and the cost of refusing useful actions.</td></tr>
+              <tr><td>External sequence</td><td>AgentDojo V7-V10</td><td>Transfer is tested separately and its negative holdout is retained.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="protocol-note">
+          <h3>What was not done</h3>
+          <ul>
+            <li>No post-hoc selection of a favorable task or split.</li>
+            <li>No claim that a failed action proxy equals real-world harm.</li>
+            <li>No use of AgentDojo V10 as a positive certificate.</li>
+            <li>No claim that the method dominates every baseline on utility.</li>
+          </ul>
+        </aside>
+      </div>
+      <div class="metric-strip" aria-label="Primary evaluation questions">
+        <div><strong>Risk</strong><span>How often is an authorized action adverse?</span></div>
+        <div><strong>Coverage</strong><span>How often does the system authorize rather than refuse?</span></div>
+        <div><strong>Locality</strong><span>Does a global result hide a risky task group?</span></div>
+        <div><strong>Transfer</strong><span>Does the certificate survive a different environment?</span></div>
+      </div>
+    </section>
+
+    <section class="band-blue" id="mechanism" aria-labelledby="method-title">
       <div class="section-shell">
         <div class="section-header inverse">
-          <p class="section-kicker">2. Certification unit</p>
-          <h2 id="method-title">EPV-Opt certifies after the pipeline has selected its winner</h2>
+          <p class="section-kicker">4. Mechanism interaction</p>
+          <h2 id="method-title">EPV-Opt adds a permission check after selection</h2>
+          <p class="section-lede inverse-lede">The pieces are familiar in isolation. The paper's operational point is their order: eligibility and provenance first, selection second, authorization of the selected action third.</p>
         </div>
         <figure class="wide-figure figure-on-blue">
           <img src="assets/figures/fig_post_selection_epv_pipeline.png" alt="EPV-Opt pipeline from candidate plans through eligibility and provenance, frozen selection, post-selection certificate, and authorize review abstain routing">
@@ -146,13 +241,19 @@
             <p>Certified score-clearing tasks authorize; score-clearing but unsupported tasks review; all other actions abstain.</p>
           </article>
         </div>
+        <div class="interaction-map">
+          <div><strong>1. Eligibility</strong><span>Role and provenance rules decide which sources may compete.</span></div>
+          <div><strong>2. Selection</strong><span>A frozen scorer and tie rule choose one candidate.</span></div>
+          <div><strong>3. Certification</strong><span>Post-selection evidence tests the winner against global and local risk budgets.</span></div>
+          <div><strong>4. Route</strong><span>Authorize supported actions, review unsupported local groups, abstain on failure.</span></div>
+        </div>
       </div>
     </section>
 
-    <section class="section-shell narrative-section" id="theory" aria-labelledby="theory-title">
+    <section class="section-shell narrative-section mechanism-theory" aria-labelledby="theory-title">
       <div class="section-header">
-        <p class="section-kicker">3. Theory</p>
-        <h2 id="theory-title">What the formal results establish</h2>
+        <p class="section-kicker">4. Mechanism, formalized</p>
+        <h2 id="theory-title">Why the permission check has to happen after the winner is known</h2>
         <p class="section-lede">The paper does not claim a new generic confidence bound. It specifies the selected-action object, then applies exact finite-sample control to the frozen agent pipeline.</p>
       </div>
       <div class="theorem-list">
@@ -186,8 +287,8 @@
     <section class="band-light" id="evidence" aria-labelledby="evidence-title">
       <div class="section-shell">
         <div class="section-header">
-          <p class="section-kicker">4. Sealed evidence</p>
-          <h2 id="evidence-title">Primary result and external transfer are reported separately</h2>
+          <p class="section-kicker">5. Evidence results</p>
+          <h2 id="evidence-title">The results support a narrower claim than “the agent is safe”</h2>
           <p class="section-lede">The 20-task MiniWoB study is the only environment with a positive heldout statistical certificate. AgentDojo is a separate external transfer sequence, not a positive confirmation.</p>
         </div>
 
@@ -306,7 +407,7 @@
     <section class="band-boundary" id="limits" aria-labelledby="limits-title">
       <div class="section-shell">
         <div class="section-header">
-          <p class="section-kicker">5. Limits and non-claims</p>
+          <p class="section-kicker">6. Limits and non-claims</p>
           <h2 id="limits-title">The certificate is intentionally narrower than general agent safety</h2>
         </div>
         <div class="boundary-grid">
@@ -332,11 +433,43 @@
       </div>
     </section>
 
-    <section class="section-shell artifacts-section" id="artifacts" aria-labelledby="artifacts-title">
+    <section class="section-shell artifacts-section" id="engineering" aria-labelledby="engineering-title">
       <div class="section-header">
-        <p class="section-kicker">Artifacts and reading</p>
-        <h2 id="artifacts-title">Primary documents and reproducibility checks</h2>
+        <p class="section-kicker">7. Engineering application</p>
+        <h2 id="engineering-title">What a responsible implementation would do with this idea</h2>
+        <p class="section-lede">The paper is a certificate protocol, not a drop-in production safety guarantee. Its engineering value is a disciplined place to stop, ask for review, and invalidate stale authority.</p>
       </div>
+      <div class="deployment-ladder">
+        <article>
+          <span class="deployment-stage">Stage 1</span>
+          <h3>Resettable sandbox</h3>
+          <p>Run candidate actions from the same recorded state, observe outcomes, and certify the selected action before allowing an automated step.</p>
+          <strong>Best fit for the paper's evidence mode.</strong>
+        </article>
+        <article>
+          <span class="deployment-stage">Stage 2</span>
+          <h3>Shadow or review mode</h3>
+          <p>Log the proposed action and certificate decision without applying an irreversible side effect. Route unsupported task groups to a human.</p>
+          <strong>Useful when replay is partial.</strong>
+        </article>
+        <article>
+          <span class="deployment-stage">Stage 3</span>
+          <h3>Live, irreversible action</h3>
+          <p>Require a current certificate, valid provenance, sufficient local support, and an explicit fallback. Otherwise fail closed.</p>
+          <strong>Outside this paper's demonstrated guarantee.</strong>
+        </article>
+      </div>
+      <div class="engineering-record">
+        <div>
+          <h3>What an audit record should retain</h3>
+          <p>Pipeline fingerprint, candidate set, role and provenance decisions, selected action, score, threshold, calibration version, risk group, route, outcome, and certificate status.</p>
+        </div>
+        <div>
+          <h3>What changes require re-certification</h3>
+          <p>New proposer, new score, changed role registry, altered candidate order, new task mixture, changed outcome label, or any update that changes the selected-action distribution.</p>
+        </div>
+      </div>
+      <h3 class="artifact-heading">Primary documents and reproducibility checks</h3>
       <div class="artifact-links">
         <a href="assets/paper/main.pdf"><strong>Main paper</strong><span>7-page AAAI manuscript</span></a>
         <a href="assets/paper/supplement.pdf"><strong>Supplement</strong><span>Proofs, protocol, audits, and transfer sequence</span></a>
