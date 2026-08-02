@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Prediction Is Not Permission: Statistical Execution Authority for AI Agents.">
+  <meta name="theme-color" content="#15324b">
+  <title>Statistical Execution Authority | AAAI submission artifact</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Statistical Execution Authority home">
+        <span class="brand-mark">SEA</span>
+        <span>Statistical Execution Authority</span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#paper">Paper</a>
+        <a href="#evidence">Evidence</a>
+        <a href="#figures">Figures</a>
+        <a href="#reproducibility">Reproducibility</a>
+        <a class="nav-external" href="https://github.com/colin-wang-research/epv-aaai-20260707-site" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero section-shell">
+      <div class="hero-copy">
+        <p class="eyebrow">AAAI submission artifact</p>
+        <h1>Prediction Is Not Permission</h1>
+        <p class="hero-subtitle">Statistical Execution Authority for AI Agents</p>
+        <p class="hero-lede">
+          A selected action is not authorized merely because a model can predict it,
+          explain it, or assign it a high score. Statistical Execution Authority
+          certifies the action produced by the complete agent pipeline after
+          eligibility, provenance, selection, and consequence checks.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="assets/paper/main.pdf">Read the main paper</a>
+          <a class="button button-secondary" href="assets/paper/main_with_supplement.pdf">Open combined PDF</a>
+        </div>
+        <div class="artifact-meta" aria-label="Submission package facts">
+          <span><strong>7</strong> main pages</span>
+          <span><strong>6</strong> supplement pages</span>
+          <span><strong>13</strong> combined pages</span>
+          <span><strong>221</strong> tests passing</span>
+        </div>
+      </div>
+      <aside class="hero-note" aria-label="Core claim">
+        <p class="note-label">Core claim</p>
+        <p class="quote">Priors propose.<br>Post-selection evidence authorizes.</p>
+        <div class="note-rule"></div>
+        <p class="note-body">The certified object is the action selected by the frozen pipeline, not an isolated source-level score.</p>
+      </aside>
+    </section>
+
+    <section class="band band-soft" id="paper">
+      <div class="section-shell">
+        <div class="section-heading">
+          <p class="eyebrow">The paper</p>
+          <h2>Post-selection agent authorization</h2>
+          <p>Statistical Execution Authority studies when a heterogeneous agent pipeline has enough statistical and provenance evidence to execute its selected action.</p>
+        </div>
+        <div class="concept-grid">
+          <article class="concept-item">
+            <span class="concept-number">01</span>
+            <h3>Selection-Induced Authority Risk</h3>
+            <p>Source-level safety does not automatically transfer through scoring, routing, or argmax selection to the final action.</p>
+          </article>
+          <article class="concept-item">
+            <span class="concept-number">02</span>
+            <h3>EPV-Opt</h3>
+            <p>The complete frozen selector is calibrated after selection and routes actions to authorize, review, or abstain.</p>
+          </article>
+          <article class="concept-item">
+            <span class="concept-number">03</span>
+            <h3>Local evidence boundaries</h3>
+            <p>Global certificates do not erase unsupported task or severity groups. Insufficient local support fails closed to review.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell diagram-section" aria-labelledby="diagram-title">
+      <div class="section-heading compact">
+        <p class="eyebrow">Method at a glance</p>
+        <h2 id="diagram-title">Authority is earned after selection</h2>
+      </div>
+      <figure class="feature-figure">
+        <img src="assets/figures/fig_post_selection_epv_pipeline.png" alt="EPV-Opt pipeline from candidate proposals through eligibility and selection to post-selection certificate and authorize, review, or abstain routing" loading="lazy">
+        <figcaption>EPV-Opt applies the certificate to the selected output of the complete pipeline. Pipeline changes invalidate the certificate until recalibration.</figcaption>
+      </figure>
+    </section>
+
+    <section class="band band-dark" id="evidence">
+      <div class="section-shell">
+        <div class="section-heading light">
+          <p class="eyebrow">Evidence snapshot</p>
+          <h2>What is established, and where the boundary remains</h2>
+        </div>
+        <div class="evidence-grid">
+          <article class="evidence-card">
+            <p class="evidence-value">20</p>
+            <h3>MiniWoB tasks</h3>
+            <p>4,000 fresh reset-state episodes and 32,000 registered candidate-plan executions.</p>
+          </article>
+          <article class="evidence-card accent-teal">
+            <p class="evidence-value">0/388</p>
+            <h3>Harmful authorizations</h3>
+            <p>At K=8, split-local EPV-Opt directly authorizes 0.194 of episodes and routes 0.086 to review in the primary snapshot.</p>
+          </article>
+          <article class="evidence-card accent-amber">
+            <p class="evidence-value">V10</p>
+            <h3>Negative transfer retained</h3>
+            <p>The independent AgentDojo holdout does not confirm the pooled certificate. No task-local or high-impact authority is claimed.</p>
+          </article>
+        </div>
+        <p class="boundary-callout"><strong>Boundary:</strong> the positive statistical execution-authority certificate is the sealed reset-state MiniWoB study. AgentDojo adds multi-model and dynamic interaction evidence, but its independent holdout remains negative and is reported as such.</p>
+      </div>
+    </section>
+
+    <section class="section-shell" id="figures">
+      <div class="section-heading">
+        <p class="eyebrow">Visual summary</p>
+        <h2>Three views of the contribution</h2>
+        <p>All displayed figures are generated paper artifacts. The repository also contains the vector PDF sources and the full figure audit.</p>
+      </div>
+      <div class="figure-grid">
+        <figure class="paper-figure">
+          <img src="assets/figures/fig_prior_action_gap.png" alt="Belief and prior information are separated from execution reality and an EPV authorization gate" loading="lazy">
+          <figcaption><strong>Prior-to-action gap.</strong> Belief quality is not execution authority.</figcaption>
+        </figure>
+        <figure class="paper-figure">
+          <img src="assets/figures/fig_selection_induced_risk.png" alt="Selection-induced authority risk under heterogeneous candidates" loading="lazy">
+          <figcaption><strong>SIAR.</strong> Candidate selection can change the risk of the final action.</figcaption>
+        </figure>
+        <figure class="paper-figure">
+          <img src="assets/figures/fig_matched_coverage_frontier.png" alt="Matched coverage frontier comparing authorization methods" loading="lazy">
+          <figcaption><strong>Risk and coverage.</strong> Different methods certify different risk objects.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="band band-paper" id="reader">
+      <div class="section-shell reader-layout">
+        <div class="reader-copy">
+          <p class="eyebrow">Read online</p>
+          <h2>Paper viewer</h2>
+          <p>Use the embedded viewer for a quick read, or download the exact PDF used by the submission package.</p>
+          <div class="reader-links" role="group" aria-label="PDF choices">
+            <button class="reader-tab active" type="button" data-pdf="assets/paper/main.pdf">Main paper</button>
+            <button class="reader-tab" type="button" data-pdf="assets/paper/supplement.pdf">Supplement</button>
+            <button class="reader-tab" type="button" data-pdf="assets/paper/main_with_supplement.pdf">Combined</button>
+          </div>
+          <a class="text-link" id="download-link" href="assets/paper/main.pdf">Download selected PDF</a>
+        </div>
+        <div class="pdf-frame-wrap">
+          <iframe id="pdf-viewer" title="Paper PDF viewer" src="assets/paper/main.pdf"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell" id="reproducibility">
+      <div class="section-heading">
+        <p class="eyebrow">Reproducibility</p>
+        <h2>Evidence, artifacts, and claim boundaries</h2>
+      </div>
+      <div class="resource-grid">
+        <a class="resource-card" href="assets/docs/REVIEWER_GUIDE.md">
+          <span class="resource-kicker">Guide</span>
+          <h3>Reviewer guide</h3>
+          <p>Entry points, experiment lineage, result interpretation, and explicit non-claims.</p>
+        </a>
+        <a class="resource-card" href="assets/docs/SUBMISSION_PACKAGE.md">
+          <span class="resource-kicker">Manifest</span>
+          <h3>Submission package</h3>
+          <p>Frozen protocols, evidence artifacts, verification commands, and release boundaries.</p>
+        </a>
+        <a class="resource-card" href="https://github.com/colin-wang-research/epv-aaai-20260707-site" rel="noreferrer">
+          <span class="resource-kicker">Source</span>
+          <h3>GitHub repository</h3>
+          <p>Code, figures, tables, tests, manifests, and the reproducible build workflow.</p>
+        </a>
+      </div>
+      <div class="verification-strip">
+        <span><strong>44</strong> readiness checks passed</span>
+        <span><strong>0</strong> readiness failures</span>
+        <span><strong>43/43</strong> figure checks</span>
+        <span><strong>0</strong> Type 3 fonts</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="section-shell footer-inner">
+      <p>Statistical Execution Authority · AAAI submission artifact</p>
+      <a href="https://github.com/colin-wang-research/epv-aaai-20260707-site" rel="noreferrer">View source on GitHub</a>
+    </div>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
