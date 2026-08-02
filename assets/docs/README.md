@@ -1,6 +1,6 @@
 # Statistical Execution Authority
 
-Project website: <https://colin-wang-research.github.io/epv-aaai-20260707-site/>
+Project website: <https://colin-wang-research.github.io/epv-aaai/>
 
 This repository contains the AAAI submission artifact for:
 

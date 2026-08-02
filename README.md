@@ -6,7 +6,7 @@ Public reviewer-facing website for:
 
 Website:
 
-<https://colin-wang-research.github.io/epv-aaai-20260707-site/>
+<https://colin-wang-research.github.io/epv-aaai/>
 
 This repository contains only the static website, reviewer-facing PDFs,
 selected figures, and release documentation. The complete research repository
