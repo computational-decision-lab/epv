@@ -6,7 +6,7 @@ Public reviewer-facing website for:
 
 Website:
 
-<https://colin-wang-research.github.io/epv-aaai/>
+<https://computational-decision-lab.github.io/epv-aaai/>
 
 This repository contains only the static website, reviewer-facing PDFs,
 selected figures, and release documentation. The complete research repository
