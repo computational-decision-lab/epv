@@ -3,200 +3,380 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Prediction Is Not Permission: Statistical Execution Authority for AI Agents.">
-  <meta name="theme-color" content="#15324b">
-  <title>Statistical Execution Authority | AAAI submission artifact</title>
+  <meta name="description" content="Reviewer companion for Prediction Is Not Permission: Statistical Execution Authority for AI Agents.">
+  <meta name="theme-color" content="#17324a">
+  <title>Statistical Execution Authority | Reviewer companion</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="#top" aria-label="Statistical Execution Authority home">
+      <a class="brand" href="#overview" aria-label="Statistical Execution Authority overview">
         <span class="brand-mark">SEA</span>
-        <span>Statistical Execution Authority</span>
+        <span class="brand-copy"><strong>Statistical Execution Authority</strong><small>Reviewer companion</small></span>
       </a>
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="#paper">Paper</a>
+      <nav class="nav" aria-label="Reviewer navigation">
+        <a href="#object">Object</a>
+        <a href="#method">Method</a>
+        <a href="#theory">Theory</a>
         <a href="#evidence">Evidence</a>
-        <a href="#figures">Figures</a>
-        <a href="#reproducibility">Reproducibility</a>
-        <a class="nav-external" href="https://github.com/colin-wang-research/epv-aaai" rel="noreferrer">GitHub</a>
+        <a href="#limits">Limits</a>
+        <a href="#artifacts">Artifacts</a>
+        <a class="nav-source" href="https://github.com/colin-wang-research/epv-aaai" rel="noreferrer">GitHub</a>
       </nav>
     </div>
   </header>
 
-  <main id="top">
-    <section class="hero section-shell">
-      <div class="hero-copy">
-        <p class="eyebrow">AAAI submission artifact</p>
-        <h1>Prediction Is Not Permission</h1>
-        <p class="hero-subtitle">Statistical Execution Authority for AI Agents</p>
-        <p class="hero-lede">
-          A selected action is not authorized merely because a model can predict it,
-          explain it, or assign it a high score. Statistical Execution Authority
-          certifies the action produced by the complete agent pipeline after
-          eligibility, provenance, selection, and consequence checks.
-        </p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="assets/paper/main.pdf">Read the main paper</a>
-          <a class="button button-secondary" href="assets/paper/main_with_supplement.pdf">Open combined PDF</a>
+  <main id="overview">
+    <section class="hero">
+      <div class="section-shell hero-layout">
+        <div class="hero-copy">
+          <p class="paper-kicker">AAAI paper artifact</p>
+          <h1>Prediction Is Not Permission</h1>
+          <p class="hero-subtitle">Statistical Execution Authority for AI Agents</p>
+          <p class="hero-abstract">
+            In a multi-candidate agent pipeline, a source-level safety signal need
+            not survive eligibility checks, scoring, and adaptive selection. This
+            paper certifies the selected action of a frozen pipeline, then routes
+            it to <strong>authorize</strong>, <strong>review</strong>, or
+            <strong>abstain</strong> under registered conditional-risk bounds.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="assets/paper/main.pdf">Read the 7-page paper</a>
+            <a class="button button-secondary" href="#reader">Open the PDF reader</a>
+          </div>
         </div>
-        <div class="artifact-meta" aria-label="Submission package facts">
-          <span><strong>7</strong> main pages</span>
-          <span><strong>6</strong> supplement pages</span>
-          <span><strong>13</strong> combined pages</span>
-          <span><strong>221</strong> tests passing</span>
-        </div>
+        <aside class="scope-panel" aria-labelledby="scope-title">
+          <h2 id="scope-title">Review scope</h2>
+          <dl>
+            <div>
+              <dt>Established</dt>
+              <dd>Sealed reset-state MiniWoB evidence for selected-action certification under a frozen pipeline.</dd>
+            </div>
+            <div>
+              <dt>Not established</dt>
+              <dd>Production safety, legal permission, high-impact authority, or positive AgentDojo transfer.</dd>
+            </div>
+            <div>
+              <dt>Reading rule</dt>
+              <dd>Each positive result below is paired with the exact risk object and its boundary.</dd>
+            </div>
+          </dl>
+        </aside>
       </div>
-      <aside class="hero-note" aria-label="Core claim">
-        <p class="note-label">Core claim</p>
-        <p class="quote">Priors propose.<br>Post-selection evidence authorizes.</p>
-        <div class="note-rule"></div>
-        <p class="note-body">The certified object is the action selected by the frozen pipeline, not an isolated source-level score.</p>
-      </aside>
     </section>
 
-    <section class="band band-soft" id="paper">
+    <section class="review-path band-light" aria-labelledby="path-title">
       <div class="section-shell">
-        <div class="section-heading">
-          <p class="eyebrow">The paper</p>
-          <h2>Post-selection agent authorization</h2>
-          <p>Statistical Execution Authority studies when a heterogeneous agent pipeline has enough statistical and provenance evidence to execute its selected action.</p>
+        <div class="section-intro">
+          <p class="section-kicker">Suggested reviewer path</p>
+          <h2 id="path-title">Read the evidence chain in five stops</h2>
         </div>
-        <div class="concept-grid">
-          <article class="concept-item">
-            <span class="concept-number">01</span>
-            <h3>Selection-Induced Authority Risk</h3>
-            <p>Source-level safety does not automatically transfer through scoring, routing, or argmax selection to the final action.</p>
-          </article>
-          <article class="concept-item">
-            <span class="concept-number">02</span>
-            <h3>EPV-Opt</h3>
-            <p>The complete frozen selector is calibrated after selection and routes actions to authorize, review, or abstain.</p>
-          </article>
-          <article class="concept-item">
-            <span class="concept-number">03</span>
-            <h3>Local evidence boundaries</h3>
-            <p>Global certificates do not erase unsupported task or severity groups. Insufficient local support fails closed to review.</p>
-          </article>
-        </div>
+        <ol class="path-list">
+          <li><a href="#object"><strong>Research object</strong><span>Why selected-action risk differs from source-level safety.</span></a></li>
+          <li><a href="#method"><strong>Certification unit</strong><span>What is frozen before calibration and what receives authority.</span></a></li>
+          <li><a href="#theory"><strong>Formal basis</strong><span>Selected-risk identity, replacement, and finite-sample control.</span></a></li>
+          <li><a href="#evidence"><strong>Sealed evidence</strong><span>Primary MiniWoB result, local routing, and external transfer.</span></a></li>
+          <li><a href="#limits"><strong>Boundary</strong><span>What the paper deliberately does not claim.</span></a></li>
+        </ol>
       </div>
     </section>
 
-    <section class="section-shell diagram-section" aria-labelledby="diagram-title">
-      <div class="section-heading compact">
-        <p class="eyebrow">Method at a glance</p>
-        <h2 id="diagram-title">Authority is earned after selection</h2>
+    <section class="section-shell narrative-section" id="object" aria-labelledby="object-title">
+      <div class="section-header">
+        <p class="section-kicker">1. Research object</p>
+        <h2 id="object-title">The authorization target is the selected action</h2>
       </div>
-      <figure class="feature-figure">
-        <img src="assets/figures/fig_post_selection_epv_pipeline.png" alt="EPV-Opt pipeline from candidate proposals through eligibility and selection to post-selection certificate and authorize, review, or abstain routing" loading="lazy">
-        <figcaption>EPV-Opt applies the certificate to the selected output of the complete pipeline. Pipeline changes invalidate the certificate until recalibration.</figcaption>
+      <div class="prose-grid">
+        <div class="prose">
+          <p>
+            A pipeline may receive proposals from a rule, model, planner, tool,
+            critique, or cached rationale. The paper separates three questions:
+            what a source proposes, which candidate the full pipeline selects,
+            and whether that final action has earned permission to execute.
+          </p>
+          <p>
+            The registered authority risk is conditional on authorization:
+            <span class="formula">R<sub>auth</sub>(&lambda;) = P(H = 1 | A<sub>&lambda;</sub> = 1)</span>.
+            Here <em>H</em> is the pre-registered adverse-action proxy and
+            <em>A</em> is the authorization event. It is not a claim about
+            observed production, privacy, financial, or legal harm.
+          </p>
+        </div>
+        <div class="object-table-wrap">
+          <table class="object-table">
+            <thead>
+              <tr><th>Stage</th><th>Question</th><th>Paper treatment</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Proposal</td><td>What does a source suggest?</td><td>Candidate evidence only</td></tr>
+              <tr><td>Selection</td><td>Which candidate wins after the pipeline?</td><td>Frozen selector output</td></tr>
+              <tr><td>Authorization</td><td>May the selected action execute?</td><td>Post-selection certificate and route</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <figure class="wide-figure">
+        <img src="assets/figures/fig_selection_induced_risk.png" alt="Selection-induced authority risk figure showing that candidate count and pairwise ranking alone do not determine selected-action risk">
+        <figcaption>Selection-Induced Authority Risk (SIAR). Candidate count alone does not determine risk; score-loss dependence and replacement behavior determine the selected action's adverse-proxy rate.</figcaption>
       </figure>
     </section>
 
-    <section class="band band-dark" id="evidence">
+    <section class="band-blue" id="method" aria-labelledby="method-title">
       <div class="section-shell">
-        <div class="section-heading light">
-          <p class="eyebrow">Evidence snapshot</p>
-          <h2>What is established, and where the boundary remains</h2>
+        <div class="section-header inverse">
+          <p class="section-kicker">2. Certification unit</p>
+          <h2 id="method-title">EPV-Opt certifies after the pipeline has selected its winner</h2>
         </div>
-        <div class="evidence-grid">
-          <article class="evidence-card">
-            <p class="evidence-value">20</p>
-            <h3>MiniWoB tasks</h3>
-            <p>4,000 fresh reset-state episodes and 32,000 registered candidate-plan executions.</p>
+        <figure class="wide-figure figure-on-blue">
+          <img src="assets/figures/fig_post_selection_epv_pipeline.png" alt="EPV-Opt pipeline from candidate plans through eligibility and provenance, frozen selection, post-selection certificate, and authorize review abstain routing">
+          <figcaption>Generation, eligibility, provenance, score, tie-breaking, and argmax are frozen before calibration. A pipeline fingerprint invalidates the certificate after an unregistered change.</figcaption>
+        </figure>
+        <div class="method-notes">
+          <article>
+            <h3>Freeze</h3>
+            <p>Candidate count, role registry, provenance rules, score, threshold, task family, and tie rule are part of the certification unit.</p>
           </article>
-          <article class="evidence-card accent-teal">
-            <p class="evidence-value">0/388</p>
-            <h3>Harmful authorizations</h3>
-            <p>At K=8, split-local EPV-Opt directly authorizes 0.194 of episodes and routes 0.086 to review in the primary snapshot.</p>
+          <article>
+            <h3>Calibrate</h3>
+            <p>Development chooses one threshold. Independent calibration supplies simultaneous local ordinary-risk and active high-impact bounds.</p>
           </article>
-          <article class="evidence-card accent-amber">
-            <p class="evidence-value">V10</p>
-            <h3>Negative transfer retained</h3>
-            <p>The independent AgentDojo holdout does not confirm the pooled certificate. No task-local or high-impact authority is claimed.</p>
+          <article>
+            <h3>Route</h3>
+            <p>Certified score-clearing tasks authorize; score-clearing but unsupported tasks review; all other actions abstain.</p>
           </article>
         </div>
-        <p class="boundary-callout"><strong>Boundary:</strong> the positive statistical execution-authority certificate is the sealed reset-state MiniWoB study. AgentDojo adds multi-model and dynamic interaction evidence, but its independent holdout remains negative and is reported as such.</p>
       </div>
     </section>
 
-    <section class="section-shell" id="figures">
-      <div class="section-heading">
-        <p class="eyebrow">Visual summary</p>
-        <h2>Three views of the contribution</h2>
-        <p>All displayed figures are generated paper artifacts. The repository also contains the vector PDF sources and the full figure audit.</p>
+    <section class="section-shell narrative-section" id="theory" aria-labelledby="theory-title">
+      <div class="section-header">
+        <p class="section-kicker">3. Theory</p>
+        <h2 id="theory-title">What the formal results establish</h2>
+        <p class="section-lede">The paper does not claim a new generic confidence bound. It specifies the selected-action object, then applies exact finite-sample control to the frozen agent pipeline.</p>
       </div>
-      <div class="figure-grid">
-        <figure class="paper-figure">
-          <img src="assets/figures/fig_prior_action_gap.png" alt="Belief and prior information are separated from execution reality and an EPV authorization gate" loading="lazy">
-          <figcaption><strong>Prior-to-action gap.</strong> Belief quality is not execution authority.</figcaption>
-        </figure>
-        <figure class="paper-figure">
-          <img src="assets/figures/fig_selection_induced_risk.png" alt="Selection-induced authority risk under heterogeneous candidates" loading="lazy">
-          <figcaption><strong>SIAR.</strong> Candidate selection can change the risk of the final action.</figcaption>
-        </figure>
-        <figure class="paper-figure">
-          <img src="assets/figures/fig_matched_coverage_frontier.png" alt="Matched coverage frontier comparing authorization methods" loading="lazy">
-          <figcaption><strong>Risk and coverage.</strong> Different methods certify different risk objects.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section class="band band-paper" id="reader">
-      <div class="section-shell reader-layout">
-        <div class="reader-copy">
-          <p class="eyebrow">Read online</p>
-          <h2>Paper viewer</h2>
-          <p>Use the embedded viewer for a quick read, or download the exact PDF used by the submission package.</p>
-          <div class="reader-links" role="group" aria-label="PDF choices">
-            <button class="reader-tab active" type="button" data-pdf="assets/paper/main.pdf">Main paper</button>
-            <button class="reader-tab" type="button" data-pdf="assets/paper/supplement.pdf">Supplement</button>
-            <button class="reader-tab" type="button" data-pdf="assets/paper/main_with_supplement.pdf">Combined</button>
+      <div class="theorem-list">
+        <article class="theorem-item">
+          <span class="theorem-label">Theorem 1</span>
+          <div>
+            <h3>Independent heterogeneous selected-action risk</h3>
+            <p>Under explicit independence, eligibility, and continuous-score assumptions, selected risk equals the probability that each harmful eligible candidate clears the threshold and defeats every competitor, divided by authorization probability.</p>
           </div>
-          <a class="text-link" id="download-link" href="assets/paper/main.pdf">Download selected PDF</a>
+        </article>
+        <article class="theorem-item">
+          <span class="theorem-label">Propositions</span>
+          <div>
+            <h3>Candidate addition and thresholded replacement</h3>
+            <p>Adding candidates increases risk only when added winners are more adverse than the actions they replace. With a threshold, authorization entry, exit, and denominator changes must also be accounted for.</p>
+          </div>
+        </article>
+        <article class="theorem-item">
+          <span class="theorem-label">Theorem 2</span>
+          <div>
+            <h3>Finite-sample split-local control</h3>
+            <p>With a frozen IID pipeline, an independently chosen threshold, and simultaneous Clopper-Pearson bounds over registered task and severity events, every certified task satisfies its active conditional-risk budget with probability at least 1 - &delta;.</p>
+          </div>
+        </article>
+      </div>
+      <div class="support-note">
+        <strong>Support cost is explicit.</strong> Zero observed adverse outcomes are not enough by themselves: the required calibration support grows with the risk budget and the number of simultaneously protected events.
+      </div>
+    </section>
+
+    <section class="band-light" id="evidence" aria-labelledby="evidence-title">
+      <div class="section-shell">
+        <div class="section-header">
+          <p class="section-kicker">4. Sealed evidence</p>
+          <h2 id="evidence-title">Primary result and external transfer are reported separately</h2>
+          <p class="section-lede">The 20-task MiniWoB study is the only environment with a positive heldout statistical certificate. AgentDojo is a separate external transfer sequence, not a positive confirmation.</p>
         </div>
-        <div class="pdf-frame-wrap">
+
+        <div class="study-scope">
+          <div><strong>20</strong><span>MiniWoB tasks</span></div>
+          <div><strong>4,000</strong><span>fresh reset-state episodes</span></div>
+          <div><strong>32,000</strong><span>registered candidate executions</span></div>
+          <div><strong>K = 8</strong><span>primary result snapshot</span></div>
+        </div>
+
+        <div class="result-table-wrap">
+          <table class="result-table">
+            <caption>Sealed MiniWoB K = 8 results. UCB is a one-sided 95% test diagnostic for the registered adverse-action proxy. Guarantee semantics differ by method.</caption>
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>Direct</th>
+                <th>Review</th>
+                <th>Observed FAR</th>
+                <th>Test UCB</th>
+                <th>Utility</th>
+                <th>AV</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Learned selector</td><td>1.000</td><td>0</td><td>0.684</td><td>0.701</td><td>-449.10</td><td>-8.00</td></tr>
+              <tr><td>Sourcewise CP + argmax</td><td>0.089</td><td>0</td><td>0.000</td><td>0.017</td><td>169.43</td><td>610.53</td></tr>
+              <tr><td>SCoRE-SDR</td><td>0.318</td><td>0</td><td>0.077</td><td>0.097</td><td>517.05</td><td>958.15</td></tr>
+              <tr><td>End-to-end CP</td><td>0.280</td><td>0</td><td>0.038</td><td>0.054</td><td>474.69</td><td>915.80</td></tr>
+              <tr><td>EPV-Opt full family</td><td>0.099</td><td>0.182</td><td>0.025</td><td>0.053</td><td>180.66</td><td>621.77</td></tr>
+              <tr class="focus-row"><td>EPV-Opt split-local</td><td>0.194</td><td>0.086</td><td>0.000</td><td>0.008</td><td>367.85</td><td>808.95</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">Interpretation: split-local EPV-Opt improves certificate resolution and local routing, not every safety-utility frontier. End-to-end CP and SCoRE retain higher coverage or AV under different formal targets.</p>
+
+        <figure class="wide-figure">
+          <img src="assets/figures/fig_statistical_execution_authority_v4.png" alt="Sealed MiniWoB results with candidate replacement, direct authorization under different guarantee semantics, and local routing at K equals 8">
+          <figcaption>Sealed result overview. Four ordinary tasks receive simultaneous local certificates; score-clearing unsupported tasks route to review and external-side-effect tasks abstain.</figcaption>
+        </figure>
+
+        <div class="transfer-layout">
+          <div class="transfer-copy">
+            <h3>External sandbox transfer: AgentDojo</h3>
+            <p>AgentDojo adds three model families, stateful tools, and registered prompt-injection goals. It is reported as an external sequence, not merged with the sealed MiniWoB certificate.</p>
+          </div>
+          <dl class="transfer-ledger">
+            <div>
+              <dt>V9 pooled calibration</dt>
+              <dd>84 selected clusters, 0 authority violations, simultaneous UCB 0.043, 66 useful completions with LCB 0.683. The registered test remained unopened under its fixed cost cap.</dd>
+            </div>
+            <div class="negative">
+              <dt>V10 independent holdout</dt>
+              <dd>19 of 90 clusters authorize, 0 authority violations, but UCB 0.146 exceeds the 0.10 gate and support is below 40. This does not confirm transfer.</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="claim-ledger-wrap">
+          <h3>Claim-to-evidence ledger</h3>
+          <div class="claim-ledger-scroll">
+            <table class="claim-ledger">
+              <thead>
+                <tr>
+                  <th>Registered claim</th>
+                  <th>Direct evidence</th>
+                  <th>Interpretation boundary</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Candidate-level evidence does not determine selected-action risk.</td>
+                  <td>Heterogeneous selected-risk identity and replacement analysis; sealed K-scaling study.</td>
+                  <td>Not a claim that more candidates always increase risk.</td>
+                </tr>
+                <tr>
+                  <td>Post-selection local certification can route unsupported actions away from direct execution.</td>
+                  <td>Sealed MiniWoB split-local result with direct, review, and abstain outcomes.</td>
+                  <td>Applies only to the frozen, registered pipeline and adverse-action proxy.</td>
+                </tr>
+                <tr>
+                  <td>Global evidence can hide unsupported local task families.</td>
+                  <td>Task-level calibration support and the login-user-popup review route.</td>
+                  <td>Does not establish a certificate for every task or unregistered group.</td>
+                </tr>
+                <tr>
+                  <td>Certificate validity is pipeline-versioned.</td>
+                  <td>Registered fingerprint and fail-closed invalidation protocol.</td>
+                  <td>Not a drift-robust or online guarantee after a pipeline update.</td>
+                </tr>
+                <tr>
+                  <td>External transfer remains unresolved.</td>
+                  <td>AgentDojo V10 independent holdout fails its registered authorization gate.</td>
+                  <td>No positive AgentDojo, production, or high-impact authority claim.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell narrative-section" aria-labelledby="lineage-title">
+      <div class="section-header">
+        <p class="section-kicker">Evidence lineage</p>
+        <h2 id="lineage-title">Study sequence and evidence status</h2>
+      </div>
+      <ol class="timeline">
+        <li><strong>V2 / V3</strong><span>Frozen ranker and preserved zero-direct-coverage certificate failure.</span></li>
+        <li><strong>V4 sealed MiniWoB</strong><span>Positive heldout task-local certificate after pre-registered structural severity registration.</span></li>
+        <li><strong>V5 / V6</strong><span>Disjoint robustness extension and post-outcome diagnostic audit. Holm adds no coverage gain.</span></li>
+        <li><strong>AgentDojo V7 - V10</strong><span>Static and dynamic stress, pooled calibration, then a negative independent confirmation result.</span></li>
+      </ol>
+    </section>
+
+    <section class="band-boundary" id="limits" aria-labelledby="limits-title">
+      <div class="section-shell">
+        <div class="section-header">
+          <p class="section-kicker">5. Limits and non-claims</p>
+          <h2 id="limits-title">The certificate is intentionally narrower than general agent safety</h2>
+        </div>
+        <div class="boundary-grid">
+          <div>
+            <h3>Within scope</h3>
+            <ul>
+              <li>Registered conditional adverse-proxy risk after a frozen selected-output pipeline.</li>
+              <li>Simultaneous ordinary task bounds and structurally active high-impact proxy bounds in sealed MiniWoB.</li>
+              <li>Fail-closed review or abstention when local support is insufficient.</li>
+              <li>Certificate invalidation after unregistered pipeline changes.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Outside scope</h3>
+            <ul>
+              <li>Production, legal, privacy, financial, or irreversible harm guarantees.</li>
+              <li>Pointwise, unregistered-task, drift-robust, or post-update validity.</li>
+              <li>Universal ranking or utility dominance over end-to-end CP or SCoRE.</li>
+              <li>Positive independent AgentDojo transfer or high-impact authorization.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell artifacts-section" id="artifacts" aria-labelledby="artifacts-title">
+      <div class="section-header">
+        <p class="section-kicker">Artifacts and reading</p>
+        <h2 id="artifacts-title">Primary documents and reproducibility checks</h2>
+      </div>
+      <div class="artifact-links">
+        <a href="assets/paper/main.pdf"><strong>Main paper</strong><span>7-page AAAI manuscript</span></a>
+        <a href="assets/paper/supplement.pdf"><strong>Supplement</strong><span>Proofs, protocol, audits, and transfer sequence</span></a>
+        <a href="assets/paper/main_with_supplement.pdf"><strong>Combined PDF</strong><span>13-page review package</span></a>
+        <a href="assets/docs/REVIEWER_GUIDE.md"><strong>Reviewer guide</strong><span>Reading order, numbers, and explicit non-claims</span></a>
+        <a href="assets/docs/SUBMISSION_PACKAGE.md"><strong>Submission package</strong><span>Frozen artifacts, commands, and release boundary</span></a>
+        <a href="https://github.com/colin-wang-research/epv-aaai" rel="noreferrer"><strong>Website source</strong><span>Public Pages source and deployed assets</span></a>
+      </div>
+      <div class="verification-row" aria-label="Verification summary">
+        <span><strong>221</strong> tests passed</span>
+        <span><strong>43 / 43</strong> figure checks passed</span>
+        <span><strong>44 / 45</strong> readiness checks passed</span>
+        <span><strong>0</strong> readiness failures</span>
+      </div>
+    </section>
+
+    <section class="band-reader" id="reader" aria-labelledby="reader-title">
+      <div class="section-shell reader-layout">
+        <div>
+          <p class="section-kicker">Paper reader</p>
+          <h2 id="reader-title">Read the submitted package</h2>
+          <p>The browser viewer is optional. Every document below also has a direct download link for annotation and offline review.</p>
+          <div class="reader-tabs" role="tablist" aria-label="PDF selection">
+            <button class="reader-tab active" type="button" role="tab" aria-controls="pdf-reader-panel" aria-selected="true" data-pdf="assets/paper/main.pdf">Main paper</button>
+            <button class="reader-tab" type="button" role="tab" aria-controls="pdf-reader-panel" aria-selected="false" data-pdf="assets/paper/supplement.pdf">Supplement</button>
+            <button class="reader-tab" type="button" role="tab" aria-controls="pdf-reader-panel" aria-selected="false" data-pdf="assets/paper/main_with_supplement.pdf">Combined</button>
+          </div>
+          <a class="download-link" id="download-link" href="assets/paper/main.pdf">Download selected PDF</a>
+        </div>
+        <div class="pdf-wrap" id="pdf-reader-panel" role="tabpanel">
           <iframe id="pdf-viewer" title="Paper PDF viewer" src="assets/paper/main.pdf"></iframe>
         </div>
-      </div>
-    </section>
-
-    <section class="section-shell" id="reproducibility">
-      <div class="section-heading">
-        <p class="eyebrow">Reproducibility</p>
-        <h2>Evidence, artifacts, and claim boundaries</h2>
-      </div>
-      <div class="resource-grid">
-        <a class="resource-card" href="assets/docs/REVIEWER_GUIDE.md">
-          <span class="resource-kicker">Guide</span>
-          <h3>Reviewer guide</h3>
-          <p>Entry points, experiment lineage, result interpretation, and explicit non-claims.</p>
-        </a>
-        <a class="resource-card" href="assets/docs/SUBMISSION_PACKAGE.md">
-          <span class="resource-kicker">Manifest</span>
-          <h3>Submission package</h3>
-          <p>Frozen protocols, evidence artifacts, verification commands, and release boundaries.</p>
-        </a>
-        <a class="resource-card" href="https://github.com/colin-wang-research/epv-aaai" rel="noreferrer">
-          <span class="resource-kicker">Source</span>
-          <h3>GitHub repository</h3>
-          <p>Code, figures, tables, tests, manifests, and the reproducible build workflow.</p>
-        </a>
-      </div>
-      <div class="verification-strip">
-        <span><strong>44</strong> readiness checks passed</span>
-        <span><strong>0</strong> readiness failures</span>
-        <span><strong>43/43</strong> figure checks</span>
-        <span><strong>0</strong> Type 3 fonts</span>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="section-shell footer-inner">
-      <p>Statistical Execution Authority · AAAI submission artifact</p>
-      <a href="https://github.com/colin-wang-research/epv-aaai" rel="noreferrer">View source on GitHub</a>
+      <p><strong>Prediction Is Not Permission</strong> · Statistical Execution Authority for AI Agents</p>
+      <a href="#overview">Back to overview</a>
     </div>
   </footer>
   <script src="app.js"></script>
