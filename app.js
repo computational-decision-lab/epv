@@ -1,19 +1,99 @@
 (function () {
-  const viewer = document.getElementById('pdf-viewer');
-  const download = document.getElementById('download-link');
-  const tabs = document.querySelectorAll('.reader-tab');
+  function initPdfReader() {
+    const viewer = document.getElementById('pdf-viewer');
+    const download = document.getElementById('download-link');
+    const tabs = document.querySelectorAll('.reader-tab');
 
-  tabs.forEach(function (tab) {
-    tab.addEventListener('click', function () {
-      const pdf = tab.getAttribute('data-pdf');
-      viewer.setAttribute('src', pdf);
-      download.setAttribute('href', pdf);
-      tabs.forEach(function (item) {
-        item.classList.remove('active');
-        item.setAttribute('aria-selected', 'false');
+    if (!viewer || !download || !tabs.length) return;
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        const pdf = tab.getAttribute('data-pdf');
+        viewer.setAttribute('src', pdf);
+        download.setAttribute('href', pdf);
+        tabs.forEach(function (item) {
+          item.classList.remove('active');
+          item.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
       });
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
     });
-  });
+  }
+
+  function initScenarioTabs() {
+    const practice = document.getElementById('practice');
+    const tablist = document.getElementById('practice-tabs');
+    if (!practice || !tablist) return;
+
+    const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+    if (!tabs.length) return;
+
+    function activateScenario(tab, focus) {
+      tabs.forEach(function (item) {
+        const selected = item === tab;
+        const panel = document.getElementById(item.getAttribute('aria-controls'));
+        item.setAttribute('aria-selected', String(selected));
+        item.tabIndex = selected ? 0 : -1;
+        if (panel) panel.hidden = !selected;
+      });
+      if (focus) tab.focus();
+    }
+
+    practice.classList.add('scenario-enhanced');
+    activateScenario(tabs.find(function (tab) {
+      return tab.getAttribute('aria-selected') === 'true';
+    }) || tabs[0], false);
+
+    tabs.forEach(function (tab, index) {
+      tab.addEventListener('click', function () {
+        activateScenario(tab, false);
+      });
+
+      tab.addEventListener('keydown', function (event) {
+        let nextIndex = null;
+        if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+        if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+        if (event.key === 'Home') nextIndex = 0;
+        if (event.key === 'End') nextIndex = tabs.length - 1;
+        if (nextIndex === null) return;
+        event.preventDefault();
+        activateScenario(tabs[nextIndex], true);
+      });
+    });
+  }
+
+  function initGateExplorer() {
+    const input = document.getElementById('gate-threshold');
+    const output = document.getElementById('threshold-output');
+    const actions = document.querySelectorAll('#explorer-actions [data-score]');
+    if (!input || !output || !actions.length) return;
+
+    function updateExplorer() {
+      const threshold = Number(input.value);
+      output.textContent = (threshold / 100).toFixed(2);
+
+      actions.forEach(function (action) {
+        const clearsThreshold = Number(action.dataset.score) >= threshold;
+        const supported = action.dataset.supported === 'true';
+        const route = !clearsThreshold ? 'Abstain' : supported ? 'Authorize' : 'Review';
+        const reason = !clearsThreshold
+          ? 'Does not clear the registered score threshold.'
+          : supported
+            ? 'Clears the threshold and has registered local support.'
+            : 'Clears the score threshold but lacks registered local support.';
+
+        action.dataset.routeState = route.toLowerCase();
+        action.querySelector('[data-route]').textContent = route;
+        action.querySelector('[data-reason]').textContent = reason;
+      });
+    }
+
+    input.addEventListener('input', updateExplorer);
+    updateExplorer();
+  }
+
+  initPdfReader();
+  initScenarioTabs();
+  initGateExplorer();
 }());

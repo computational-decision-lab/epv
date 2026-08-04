@@ -5,25 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Reviewer companion for Prediction Is Not Permission: Statistical Execution Authority for AI Agents.">
   <meta name="theme-color" content="#17324a">
-  <title>Statistical Execution Authority | Reviewer companion</title>
+  <title>EPV | Statistical Execution Authority</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="#overview" aria-label="Statistical Execution Authority overview">
-        <span class="brand-mark">SEA</span>
+      <a class="brand" href="#overview" aria-label="EPV overview">
+        <span class="brand-mark">EPV</span>
         <span class="brand-copy"><strong>Statistical Execution Authority</strong><small>Reviewer companion</small></span>
       </a>
       <nav class="nav" aria-label="Reviewer navigation">
         <a href="#problem">Problem</a>
+        <a href="#practice">Practice</a>
         <a href="#concept">Concept</a>
         <a href="#experiment">Experiment</a>
         <a href="#mechanism">Mechanism</a>
         <a href="#evidence">Evidence</a>
         <a href="#limits">Limits</a>
         <a href="#engineering">Engineering</a>
-        <a class="nav-source" href="https://github.com/computational-decision-lab/epv-aaai" rel="noreferrer">GitHub</a>
+        <a class="nav-source" href="https://github.com/computational-decision-lab/epv" rel="noreferrer">GitHub</a>
       </nav>
     </div>
   </header>
@@ -32,9 +33,13 @@
     <section class="hero">
       <div class="section-shell hero-layout">
         <div class="hero-copy">
-          <p class="paper-kicker">AAAI paper artifact</p>
+          <p class="paper-kicker">EPV research artifact</p>
           <h1>Prediction Is Not Permission</h1>
           <p class="hero-subtitle">Statistical Execution Authority for AI Agents</p>
+          <p class="hero-thesis">
+            Capable systems can propose and rank actions. They still need evidence
+            before they are allowed to act.
+          </p>
           <p class="hero-abstract">
             In a multi-candidate agent pipeline, a source-level safety signal need
             not survive eligibility checks, scoring, and adaptive selection. This
@@ -49,9 +54,26 @@
           </p>
           <div class="hero-actions">
             <a class="button button-primary" href="assets/paper/main.pdf">Read the 7-page paper</a>
-            <a class="button button-secondary" href="#reader">Open the PDF reader</a>
+            <a class="button button-secondary" href="#mechanism">Explore the method</a>
+            <a class="button button-secondary" href="https://github.com/computational-decision-lab/epv" rel="noreferrer">View the code</a>
           </div>
         </div>
+        <figure class="signature-gate" aria-labelledby="gate-figure-title">
+          <figcaption id="gate-figure-title">The selected-action permission gap</figcaption>
+          <div class="gate-candidates" aria-label="Candidate actions">
+            <span>Planner A</span><span>Tool B</span><span>Agent C</span>
+          </div>
+          <div class="gate-selected"><small>Frozen selector</small><strong>Selected action</strong></div>
+          <div class="gate-check"><small>Post-selection evidence</small><strong>EPV-Opt gate</strong></div>
+          <div class="gate-routes" aria-label="Available routes">
+            <span class="route-authorize">Authorize</span>
+            <span class="route-review">Review</span>
+            <span class="route-abstain">Abstain</span>
+          </div>
+          <a href="#mechanism">Inspect the mechanism</a>
+        </figure>
+      </div>
+      <div class="section-shell hero-scope">
         <aside class="scope-panel" aria-labelledby="scope-title">
           <h2 id="scope-title">Review scope</h2>
           <dl>
@@ -139,6 +161,96 @@
         <img src="assets/figures/fig_selection_induced_risk.png" alt="Selection-induced authority risk figure showing that candidate count and pairwise ranking alone do not determine selected-action risk">
         <figcaption>Selection-Induced Authority Risk (SIAR). Candidate count alone does not determine risk; score-loss dependence and replacement behavior determine the selected action's adverse-proxy rate.</figcaption>
       </figure>
+    </section>
+
+    <section class="practice-band" id="practice" aria-labelledby="practice-title">
+      <div class="section-shell">
+        <div class="section-header">
+          <p class="section-kicker">High-value decision scenarios</p>
+          <h2 id="practice-title">Where a plausible action still needs permission</h2>
+          <p class="section-lede">Four deployment scenarios apply the same selected-action question without claiming new experimental evidence.</p>
+        </div>
+
+        <div class="practice-tabs" id="practice-tabs" role="tablist" aria-label="Practice domain">
+          <button id="tab-coding" type="button" role="tab" aria-selected="true" aria-controls="panel-coding" tabindex="0">AI coding</button>
+          <button id="tab-finance" type="button" role="tab" aria-selected="false" aria-controls="panel-finance" tabindex="-1">Finance</button>
+          <button id="tab-healthcare" type="button" role="tab" aria-selected="false" aria-controls="panel-healthcare" tabindex="-1">Healthcare workflow</button>
+          <button id="tab-cybersecurity" type="button" role="tab" aria-selected="false" aria-controls="panel-cybersecurity" tabindex="-1">Cybersecurity</button>
+        </div>
+
+        <div class="scenario-stack">
+          <article class="scenario-panel" id="panel-coding" role="tabpanel" tabindex="0" aria-labelledby="tab-coding" data-scenario-panel>
+            <div class="scenario-question">
+              <p class="boundary-label">Deployment scenario, not an empirical result of this paper.</p>
+              <h3>Should an agent merge and deploy the database migration it ranked first?</h3>
+              <p>Coding agents, protected tests, static analysis, review agents, and cached repairs may all propose different changes. Selection identifies a winner; it does not establish authority to alter production state.</p>
+            </div>
+            <dl class="scenario-anatomy">
+              <div><dt>Consequential action</dt><dd>Merge and deploy a database migration or security patch.</dd></div>
+              <div><dt>What can fail</dt><dd>A convincing patch passes shallow checks but loses data, expands permissions, or follows prompt-injected repository instructions.</dd></div>
+              <div><dt>Evidence before execution</dt><dd>A frozen toolchain and selector, protected tests, rollback validation, provenance checks, and heldout adverse-change evidence.</dd></div>
+              <div><dt>Review boundary</dt><dd>Schema deletion, credential changes, production rollout, or insufficient task-local support.</dd></div>
+            </dl>
+          </article>
+
+          <article class="scenario-panel" id="panel-finance" role="tabpanel" tabindex="0" aria-labelledby="tab-finance" data-scenario-panel>
+            <div class="scenario-question">
+              <p class="boundary-label">Deployment scenario, not an empirical result of this paper.</p>
+              <h3>Should a high-confidence recommendation be allowed to move funds?</h3>
+              <p>Forecasting models, policy rules, research agents, and risk engines can disagree. Ranking their outputs may favor conviction while dropping the mandate, exposure, or fraud checks that make an action executable.</p>
+            </div>
+            <dl class="scenario-anatomy">
+              <div><dt>Consequential action</dt><dd>Execute a transfer, trade, credit decision, or portfolio rebalance.</dd></div>
+              <div><dt>What can fail</dt><dd>The selected action hides downside, liquidity, mandate, counterparty, or fraud risk that was visible before ranking.</dd></div>
+              <div><dt>Evidence before execution</dt><dd>A registered loss event, exposure group, selector, limits, calibration window, and durable audit trail.</dd></div>
+              <div><dt>Review boundary</dt><dd>High-value transfer, novel counterparty, regime shift, regulatory exception, or support below the registered minimum.</dd></div>
+            </dl>
+          </article>
+
+          <article class="scenario-panel" id="panel-healthcare" role="tabpanel" tabindex="0" aria-labelledby="tab-healthcare" data-scenario-panel>
+            <div class="scenario-question">
+              <p class="boundary-label">Deployment scenario, not an empirical result of this paper.</p>
+              <h3>When must an advisory recommendation remain under professional review?</h3>
+              <p>Clinical models, retrieval systems, guidelines, and workflow agents may each supply useful evidence. The operational risk begins when the selected recommendation is converted into a change in care.</p>
+            </div>
+            <dl class="scenario-anatomy">
+              <div><dt>Consequential action</dt><dd>Change triage priority, send an order, or alter a care workflow.</dd></div>
+              <div><dt>What can fail</dt><dd>Selection suppresses uncertainty, overlooks a subgroup, or converts advisory evidence into an unsupported instruction.</dd></div>
+              <div><dt>Evidence before execution</dt><dd>A validated workflow, subgroup-specific evaluation, provenance, a calibrated adverse-event proxy, and an accountable human role.</dd></div>
+              <div><dt>Review boundary</dt><dd>Diagnosis or treatment authority, vulnerable subgroup, conflicting evidence, missing context, or any action requiring a licensed professional.</dd></div>
+            </dl>
+          </article>
+
+          <article class="scenario-panel" id="panel-cybersecurity" role="tabpanel" tabindex="0" aria-labelledby="tab-cybersecurity" data-scenario-panel>
+            <div class="scenario-question">
+              <p class="boundary-label">Deployment scenario, not an empirical result of this paper.</p>
+              <h3>Should the fastest containment plan be allowed to lock out an organization?</h3>
+              <p>Detection agents, policy rules, threat intelligence, and remediation planners can converge on a destructive response when telemetry is poisoned or candidate failures are correlated.</p>
+            </div>
+            <dl class="scenario-anatomy">
+              <div><dt>Consequential action</dt><dd>Isolate a host, revoke credentials, block an account, or rotate keys.</dd></div>
+              <div><dt>What can fail</dt><dd>Prompt injection, poisoned telemetry, or correlated agents cause a destructive containment action to win.</dd></div>
+              <div><dt>Evidence before execution</dt><dd>Trusted provenance, adversarial evaluation, blast radius, a reversible execution path, a frozen selection rule, and incident-class support.</dd></div>
+              <div><dt>Review boundary</dt><dd>Organization-wide lockout, identity-root changes, destructive remediation, disputed telemetry, or an out-of-distribution incident.</dd></div>
+            </dl>
+          </article>
+        </div>
+
+        <div class="gate-explorer" aria-labelledby="explorer-title">
+          <div class="explorer-copy">
+            <p class="boundary-label">Conceptual demonstration, not a paper result.</p>
+            <h3 id="explorer-title">A stricter score is not enough when local evidence is missing</h3>
+            <p>The score determines which illustrative actions clear the gate. Registered local support still determines whether a score-clearing action can execute or must be reviewed.</p>
+            <label for="gate-threshold">Illustrative score threshold <output id="threshold-output" for="gate-threshold">0.70</output></label>
+            <input id="gate-threshold" type="range" min="50" max="90" step="5" value="70">
+          </div>
+          <div class="explorer-actions" id="explorer-actions" aria-live="polite">
+            <article data-score="86" data-supported="true"><strong>Reversible patch</strong><span data-route>Authorize</span><small data-reason>Clears the threshold and has registered local support.</small></article>
+            <article data-score="78" data-supported="false"><strong>Schema migration</strong><span data-route>Review</span><small data-reason>Clears the score threshold but lacks registered local support.</small></article>
+            <article data-score="64" data-supported="true"><strong>Credential rotation</strong><span data-route>Abstain</span><small data-reason>Does not clear the registered score threshold.</small></article>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="band-light" id="concept" aria-labelledby="concept-title">
@@ -256,6 +368,16 @@
         <h2 id="theory-title">Why the permission check has to happen after the winner is known</h2>
         <p class="section-lede">The paper does not claim a new generic confidence bound. It specifies the selected-action object, then applies exact finite-sample control to the frozen agent pipeline.</p>
       </div>
+      <div class="contribution-ledger" id="contributions" aria-labelledby="contributions-title">
+        <h3 id="contributions-title">Five questions that locate the contribution</h3>
+        <ol>
+          <li><a href="#problem"><strong>Why is selected-action authority distinct?</strong><span>Capability, ranking, and execution permission answer different questions.</span></a></li>
+          <li><a href="#concept"><strong>What do source-level checks miss?</strong><span>Adaptive selection changes the risk object from a source to the eventual winner.</span></a></li>
+          <li><a href="#mechanism"><strong>What is introduced?</strong><span>A selected-action risk formulation and a pipeline-bound authorization and routing method.</span></a></li>
+          <li><a href="#evidence"><strong>What supports utility?</strong><span>Sealed MiniWoB evaluation with explicit risk, coverage, and local-support accounting.</span></a></li>
+          <li><a href="#limits"><strong>What constrains transfer?</strong><span>The negative independent AgentDojo confirmation prevents an environment-free claim.</span></a></li>
+        </ol>
+      </div>
       <div class="theorem-list">
         <article class="theorem-item">
           <span class="theorem-label">Theorem 1</span>
@@ -346,6 +468,11 @@
             </div>
           </dl>
         </div>
+        <p class="transfer-lesson">
+          The AgentDojo V10 result does not confirm transfer. That failure is operationally informative:
+          execution authority cannot be detached from the pipeline and environment that produced its
+          calibration evidence. A changed system needs a new fingerprint and fresh support, not a portable safety label.
+        </p>
 
         <div class="claim-ledger-wrap">
           <h3>Claim-to-evidence ledger</h3>
@@ -469,14 +596,37 @@
           <p>New proposer, new score, changed role registry, altered candidate order, new task mixture, changed outcome label, or any update that changes the selected-action distribution.</p>
         </div>
       </div>
+      <div class="deployment-checklist" aria-labelledby="deployment-checklist-title">
+        <h3 id="deployment-checklist-title">Cross-domain implementation checklist</h3>
+        <ol>
+          <li>Freeze candidate sources, eligibility, scoring, and tie-breaking.</li>
+          <li>Define unacceptable execution events before inspecting outcomes.</li>
+          <li>Separate development, calibration, and sealed evaluation.</li>
+          <li>Require stronger support for higher-impact actions.</li>
+          <li>Route unsupported actions to an accountable professional reviewer.</li>
+          <li>Invalidate certificates after pipeline or environment changes.</li>
+          <li>Log the selected candidate, evidence, route, reviewer, and outcome.</li>
+        </ol>
+        <p>Statistical authorization complements access control, formal verification, testing, policy enforcement, and professional accountability. It does not replace them.</p>
+      </div>
+      <div class="open-questions" id="open-questions" aria-labelledby="open-questions-title">
+        <h3 id="open-questions-title">Open research questions</h3>
+        <ul>
+          <li>How should authority be recalibrated for continuously learning agents?</li>
+          <li>How can rare catastrophic events receive meaningful finite-sample support?</li>
+          <li>How should statistical evidence combine with formal verification and expert approval?</li>
+          <li>When does multi-agent competition amplify correlated failures?</li>
+          <li>How can evaluations detect systems that behave differently when tested?</li>
+        </ul>
+      </div>
       <h3 class="artifact-heading">Primary documents and reproducibility checks</h3>
       <div class="artifact-links">
-        <a href="assets/paper/main.pdf"><strong>Main paper</strong><span>7-page AAAI manuscript</span></a>
+        <a href="assets/paper/main.pdf"><strong>Main paper</strong><span>7-page main paper</span></a>
         <a href="assets/paper/supplement.pdf"><strong>Supplement</strong><span>Proofs, protocol, audits, and transfer sequence</span></a>
         <a href="assets/paper/main_with_supplement.pdf"><strong>Combined PDF</strong><span>13-page review package</span></a>
         <a href="assets/docs/REVIEWER_GUIDE.md"><strong>Reviewer guide</strong><span>Reading order, numbers, and explicit non-claims</span></a>
         <a href="assets/docs/SUBMISSION_PACKAGE.md"><strong>Submission package</strong><span>Frozen artifacts, commands, and release boundary</span></a>
-        <a href="https://github.com/computational-decision-lab/epv-aaai" rel="noreferrer"><strong>Website source</strong><span>Public Pages source and deployed assets</span></a>
+        <a href="https://github.com/computational-decision-lab/epv" rel="noreferrer"><strong>Website source</strong><span>Public Pages source and deployed assets</span></a>
       </div>
       <div class="verification-row" aria-label="Verification summary">
         <span><strong>221</strong> tests passed</span>

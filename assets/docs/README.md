@@ -1,8 +1,8 @@
-# Statistical Execution Authority
+# EPV
 
-Project website: <https://computational-decision-lab.github.io/epv-aaai/>
+Project website: <https://computational-decision-lab.github.io/epv/>
 
-This repository contains the AAAI submission artifact for:
+This repository contains the public research artifact for:
 
 **Prediction Is Not Permission: Statistical Execution Authority for AI Agents**
 
@@ -17,9 +17,9 @@ global, group, and high-impact conditional-risk constraints.
 
 - Reviewer guide: `REVIEWER_GUIDE.md`
 - Submission manifest: `SUBMISSION_PACKAGE.md`
-- Main paper: `paper/aaai/main.pdf`
-- Supplement: `paper/aaai/supplement.pdf`
-- Combined PDF: `paper/aaai/main_with_supplement.pdf`
+- Main paper: `assets/paper/main.pdf`
+- Supplement: `assets/paper/supplement.pdf`
+- Combined PDF: `assets/paper/main_with_supplement.pdf`
 - Frozen v4 protocol: `configs/statistical_execution_authority_hidden_v4.yaml`
 - Frozen v4 results: `results/statistical_execution_authority_hidden_v4/`
 - Frozen v5 extension: `results/statistical_execution_authority_hidden_v5/`
@@ -123,8 +123,7 @@ results/statistical_execution_authority_agentdojo_dynamic_v2/
                                  feasible pooled calibration certificate
 results/statistical_execution_authority_agentdojo_dynamic_v3_confirmation/
                                  independent holdout, not confirmed
-paper/aaai/sections/             current seven-page main-paper sections
-paper/aaai/supplement.tex        concise audit supplement
+assets/paper/                    current main paper and supplement PDFs
 scripts/                         analysis, plots, tables, readiness, verifier
 tests/                           unit and frozen-artifact tests
 ```

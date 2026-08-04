@@ -12,7 +12,7 @@ pipeline; source-level evidence does not by itself certify that selected action.
 
 ## Reading Order
 
-1. `paper/aaai/main_with_supplement.pdf`
+1. `assets/paper/main_with_supplement.pdf`
 2. Main Figure 1: why candidate count and pairwise ranking alone do not identify
    selected-action risk.
 3. Main Figure 2: EPV-Opt certifies after frozen selection.

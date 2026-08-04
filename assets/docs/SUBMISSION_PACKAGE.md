@@ -1,16 +1,14 @@
-# AAAI Submission Package
+# EPV Research Submission Package
 
 Paper: **Prediction Is Not Permission: Statistical Execution Authority for AI Agents**
 
-Project website: <https://computational-decision-lab.github.io/epv-aaai/>
+Project website: <https://computational-decision-lab.github.io/epv/>
 
 ## Submission Files
 
-- `paper/aaai/main.tex` and `paper/aaai/sections/`
-- `paper/aaai/supplement.tex`
-- `paper/aaai/main.pdf`
-- `paper/aaai/supplement.pdf`
-- `paper/aaai/main_with_supplement.pdf`
+- `assets/paper/main.pdf`
+- `assets/paper/supplement.pdf`
+- `assets/paper/main_with_supplement.pdf`
 
 The reviewer-facing package contains the page-limited main paper and a concise
 audit supplement. The combined PDF is generated losslessly and normalized with
