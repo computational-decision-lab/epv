@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="Reviewer companion for Prediction Is Not Permission: Statistical Execution Authority for AI Agents.">
   <meta name="theme-color" content="#17324a">
   <title>EPV | Statistical Execution Authority</title>
@@ -15,7 +15,10 @@
         <span class="brand-mark">EPV</span>
         <span class="brand-copy"><strong>Statistical Execution Authority</strong><small>Reviewer companion</small></span>
       </a>
-      <nav class="nav" aria-label="Reviewer navigation">
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open reviewer navigation" aria-controls="reviewer-navigation" aria-expanded="false">
+        <span class="nav-toggle-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+      <nav class="nav" id="reviewer-navigation" aria-label="Reviewer navigation">
         <a href="#problem">Problem</a>
         <a href="#practice">Practice</a>
         <a href="#concept">Concept</a>
@@ -134,7 +137,7 @@
             confidence of an individual source.
           </p>
         </div>
-        <div class="object-table-wrap">
+        <div class="object-table-wrap" role="region" aria-label="Everyday situations and selected-action risks" tabindex="0">
           <table class="object-table">
             <thead>
               <tr><th>Everyday situation</th><th>What can go wrong?</th><th>Paper's question</th></tr>
@@ -157,7 +160,7 @@
         <em>A</em> is the authorization event. This is not a production,
         privacy, financial, or legal harm guarantee.
       </div>
-      <figure class="wide-figure">
+      <figure class="wide-figure" role="region" aria-label="Selection-induced authority risk figure" tabindex="0">
         <img src="assets/figures/fig_selection_induced_risk.png" width="4299" height="1394" loading="lazy" decoding="async" alt="Selection-induced authority risk figure showing that candidate count and pairwise ranking alone do not determine selected-action risk">
         <figcaption>Selection-Induced Authority Risk (SIAR). Candidate count alone does not determine risk; score-loss dependence and replacement behavior determine the selected action's adverse-proxy rate.</figcaption>
       </figure>
@@ -311,7 +314,7 @@
         <p class="section-lede">This is a controlled authorization study, not a claim about a deployed commercial agent. The protocol makes the candidate set, outcome label, calibration split, and holdout boundary explicit.</p>
       </div>
       <div class="experiment-grid">
-        <div class="experiment-table-wrap">
+        <div class="experiment-table-wrap" role="region" aria-label="Frozen study design" tabindex="0">
           <table class="experiment-table">
             <thead>
               <tr><th>Protocol element</th><th>What the paper used</th><th>Why it matters</th></tr>
@@ -363,8 +366,8 @@
           </ol>
           <figcaption><strong>Conceptual architecture, not a paper result.</strong> The generated visual provides spatial intuition; the ordered labels state the method semantics.</figcaption>
         </figure>
-        <figure class="wide-figure figure-on-blue">
-          <img src="assets/figures/fig_post_selection_epv_pipeline.png" width="4134" height="1358" loading="lazy" decoding="async" alt="EPV-Opt pipeline from candidate plans through eligibility and provenance, frozen selection, post-selection certificate, and authorize review abstain routing">
+        <figure class="wide-figure figure-on-blue" role="region" aria-label="Exact post-selection execution-authority architecture" tabindex="0">
+          <img src="assets/figures/fig_post_selection_epv_pipeline.png" width="3840" height="2160" loading="lazy" decoding="async" alt="Two-lane EPV-Opt architecture: offline training, development threshold selection, fresh calibration, task-wise bounds, and a versioned certificate feed a deployment gate after frozen selection, which routes the selected output to statistical authorization, review, abstention, or fail-closed recalibration">
           <figcaption>Generation, eligibility, provenance, score, tie-breaking, and argmax are frozen before calibration. A pipeline fingerprint invalidates the certificate after an unregistered change.</figcaption>
         </figure>
         <div class="method-notes">
@@ -449,7 +452,7 @@
           <div><strong>K = 8</strong><span>primary result snapshot</span></div>
         </div>
 
-        <div class="result-table-wrap">
+        <div class="result-table-wrap" role="region" aria-label="Selected-output guarantee comparison" tabindex="0">
           <table class="result-table">
             <caption>Sealed MiniWoB K = 8 results. UCB is a one-sided 95% test diagnostic for the registered adverse-action proxy. Guarantee semantics differ by method.</caption>
             <thead>
@@ -475,7 +478,7 @@
         </div>
         <p class="table-note">Interpretation: split-local EPV-Opt improves certificate resolution and local routing, not every safety-utility frontier. End-to-end CP and SCoRE retain higher coverage or AV under different formal targets.</p>
 
-        <figure class="wide-figure">
+        <figure class="wide-figure" role="region" aria-label="Sealed selected-output results" tabindex="0">
           <img src="assets/figures/fig_statistical_execution_authority_v4.png" width="4147" height="1394" loading="lazy" decoding="async" alt="Sealed MiniWoB results with candidate replacement, direct authorization under different guarantee semantics, and local routing at K equals 8">
           <figcaption>Sealed result overview. Four ordinary tasks receive simultaneous local certificates; score-clearing unsupported tasks route to review and external-side-effect tasks abstain.</figcaption>
         </figure>
@@ -504,7 +507,7 @@
 
         <div class="claim-ledger-wrap">
           <h3>Claim-to-evidence ledger</h3>
-          <div class="claim-ledger-scroll">
+          <div class="claim-ledger-scroll" role="region" aria-label="Claim-to-evidence ledger" tabindex="0">
             <table class="claim-ledger">
               <thead>
                 <tr>
@@ -678,7 +681,7 @@
           <a class="download-link" id="download-link" href="assets/paper/main.pdf">Download selected PDF</a>
         </div>
         <div class="pdf-wrap" id="pdf-reader-panel" role="tabpanel" aria-labelledby="reader-tab-main" tabindex="0">
-          <iframe id="pdf-viewer" title="Paper PDF viewer" src="assets/paper/main.pdf"></iframe>
+          <iframe id="pdf-viewer" title="Paper PDF viewer" src="assets/paper/main.pdf" loading="lazy"></iframe>
         </div>
       </div>
     </section>

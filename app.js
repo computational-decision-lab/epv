@@ -1,4 +1,43 @@
 (function () {
+  function initMobileNavigation() {
+    const toggle = document.getElementById('nav-toggle');
+    const navigation = document.getElementById('reviewer-navigation');
+    if (!toggle || !navigation) return;
+
+    const mobile = window.matchMedia('(max-width: 690px)');
+    document.documentElement.classList.add('nav-enhanced');
+
+    function setOpen(open, returnFocus) {
+      const nextOpen = mobile.matches && open;
+      toggle.setAttribute('aria-expanded', String(nextOpen));
+      toggle.setAttribute('aria-label', nextOpen ? 'Close reviewer navigation' : 'Open reviewer navigation');
+      navigation.classList.toggle('is-open', nextOpen);
+      if (returnFocus) toggle.focus();
+    }
+
+    toggle.addEventListener('click', function () {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true', false);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false, true);
+      }
+    });
+
+    navigation.addEventListener('click', function (event) {
+      if (event.target.closest('a') && mobile.matches) setOpen(false, false);
+    });
+
+    function syncNavigation() {
+      setOpen(false, false);
+    }
+
+    if (typeof mobile.addEventListener === 'function') mobile.addEventListener('change', syncNavigation);
+    else if (typeof mobile.addListener === 'function') mobile.addListener(syncNavigation);
+    syncNavigation();
+  }
+
   function initPdfReader() {
     const viewer = document.getElementById('pdf-viewer');
     const download = document.getElementById('download-link');
@@ -115,6 +154,7 @@
     updateExplorer();
   }
 
+  initMobileNavigation();
   initPdfReader();
   initScenarioTabs();
   initGateExplorer();
