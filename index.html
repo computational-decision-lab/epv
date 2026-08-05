@@ -158,7 +158,7 @@
         privacy, financial, or legal harm guarantee.
       </div>
       <figure class="wide-figure">
-        <img src="assets/figures/fig_selection_induced_risk.png" alt="Selection-induced authority risk figure showing that candidate count and pairwise ranking alone do not determine selected-action risk">
+        <img src="assets/figures/fig_selection_induced_risk.png" width="4299" height="1394" loading="lazy" decoding="async" alt="Selection-induced authority risk figure showing that candidate count and pairwise ranking alone do not determine selected-action risk">
         <figcaption>Selection-Induced Authority Risk (SIAR). Candidate count alone does not determine risk; score-loss dependence and replacement behavior determine the selected action's adverse-proxy rate.</figcaption>
       </figure>
     </section>
@@ -185,6 +185,10 @@
               <h3>Should an agent merge and deploy the database migration it ranked first?</h3>
               <p>Coding agents, protected tests, static analysis, review agents, and cached repairs may all propose different changes. Selection identifies a winner; it does not establish authority to alter production state.</p>
             </div>
+            <figure class="scenario-visual">
+              <img src="assets/visuals/scenario-ai-coding.webp" width="1600" height="900" loading="lazy" decoding="async" data-generated-visual="scenario" alt="Illustration of a production code change held for protected tests, rollback evidence, and human approval before deployment">
+              <figcaption>Deployment scenario, not an empirical result of this paper.</figcaption>
+            </figure>
             <dl class="scenario-anatomy">
               <div><dt>Consequential action</dt><dd>Merge and deploy a database migration or security patch.</dd></div>
               <div><dt>What can fail</dt><dd>A convincing patch passes shallow checks but loses data, expands permissions, or follows prompt-injected repository instructions.</dd></div>
@@ -199,6 +203,10 @@
               <h3>Should a high-confidence recommendation be allowed to move funds?</h3>
               <p>Forecasting models, policy rules, research agents, and risk engines can disagree. Ranking their outputs may favor conviction while dropping the mandate, exposure, or fraud checks that make an action executable.</p>
             </div>
+            <figure class="scenario-visual">
+              <img src="assets/visuals/scenario-finance.webp" width="1600" height="900" loading="lazy" decoding="async" data-generated-visual="scenario" alt="Illustration of a financial action held at a mandate, exposure, counterparty, liquidity, and fraud review boundary">
+              <figcaption>Deployment scenario, not an empirical result of this paper.</figcaption>
+            </figure>
             <dl class="scenario-anatomy">
               <div><dt>Consequential action</dt><dd>Execute a transfer, trade, credit decision, or portfolio rebalance.</dd></div>
               <div><dt>What can fail</dt><dd>The selected action hides downside, liquidity, mandate, counterparty, or fraud risk that was visible before ranking.</dd></div>
@@ -213,6 +221,10 @@
               <h3>When must an advisory recommendation remain under professional review?</h3>
               <p>Clinical models, retrieval systems, guidelines, and workflow agents may each supply useful evidence. The operational risk begins when the selected recommendation is converted into a change in care.</p>
             </div>
+            <figure class="scenario-visual">
+              <img src="assets/visuals/scenario-healthcare.webp" width="1600" height="900" loading="lazy" decoding="async" data-generated-visual="scenario" alt="Illustration of an advisory healthcare workflow recommendation held for evidence review by an accountable professional">
+              <figcaption>Deployment scenario, not an empirical result of this paper.</figcaption>
+            </figure>
             <dl class="scenario-anatomy">
               <div><dt>Consequential action</dt><dd>Change triage priority, send an order, or alter a care workflow.</dd></div>
               <div><dt>What can fail</dt><dd>Selection suppresses uncertainty, overlooks a subgroup, or converts advisory evidence into an unsupported instruction.</dd></div>
@@ -227,6 +239,10 @@
               <h3>Should the fastest containment plan be allowed to lock out an organization?</h3>
               <p>Detection agents, policy rules, threat intelligence, and remediation planners can converge on a destructive response when telemetry is poisoned or candidate failures are correlated.</p>
             </div>
+            <figure class="scenario-visual">
+              <img src="assets/visuals/scenario-cybersecurity.webp" width="1600" height="900" loading="lazy" decoding="async" data-generated-visual="scenario" alt="Illustration of a cybersecurity containment action held for provenance, blast-radius, reversibility, and human review">
+              <figcaption>Deployment scenario, not an empirical result of this paper.</figcaption>
+            </figure>
             <dl class="scenario-anatomy">
               <div><dt>Consequential action</dt><dd>Isolate a host, revoke credentials, block an account, or rotate keys.</dd></div>
               <div><dt>What can fail</dt><dd>Prompt injection, poisoned telemetry, or correlated agents cause a destructive containment action to win.</dd></div>
@@ -335,8 +351,20 @@
           <h2 id="method-title">EPV-Opt adds a permission check after selection</h2>
           <p class="section-lede inverse-lede">The pieces are familiar in isolation. The paper's operational point is their order: eligibility and provenance first, selection second, authorization of the selected action third.</p>
         </div>
+        <figure class="conceptual-architecture">
+          <div class="architecture-media">
+            <img src="assets/visuals/epv-gate-architecture.webp" width="1600" height="900" loading="lazy" decoding="async" data-generated-visual="architecture" alt="">
+          </div>
+          <ol class="architecture-stages" aria-label="Conceptual decision-authority sequence">
+            <li><span>1</span><strong>Eligibility</strong><small>Candidate and provenance rules define who may compete.</small></li>
+            <li><span>2</span><strong>Selection</strong><small>The frozen pipeline chooses one proposed action.</small></li>
+            <li><span>3</span><strong>Certification</strong><small>Independent evidence evaluates the selected action.</small></li>
+            <li><span>4</span><strong>Route</strong><small>Authorize, review, or abstain before execution.</small></li>
+          </ol>
+          <figcaption><strong>Conceptual architecture, not a paper result.</strong> The generated visual provides spatial intuition; the ordered labels state the method semantics.</figcaption>
+        </figure>
         <figure class="wide-figure figure-on-blue">
-          <img src="assets/figures/fig_post_selection_epv_pipeline.png" alt="EPV-Opt pipeline from candidate plans through eligibility and provenance, frozen selection, post-selection certificate, and authorize review abstain routing">
+          <img src="assets/figures/fig_post_selection_epv_pipeline.png" width="4134" height="1358" loading="lazy" decoding="async" alt="EPV-Opt pipeline from candidate plans through eligibility and provenance, frozen selection, post-selection certificate, and authorize review abstain routing">
           <figcaption>Generation, eligibility, provenance, score, tie-breaking, and argmax are frozen before calibration. A pipeline fingerprint invalidates the certificate after an unregistered change.</figcaption>
         </figure>
         <div class="method-notes">
@@ -448,7 +476,7 @@
         <p class="table-note">Interpretation: split-local EPV-Opt improves certificate resolution and local routing, not every safety-utility frontier. End-to-end CP and SCoRE retain higher coverage or AV under different formal targets.</p>
 
         <figure class="wide-figure">
-          <img src="assets/figures/fig_statistical_execution_authority_v4.png" alt="Sealed MiniWoB results with candidate replacement, direct authorization under different guarantee semantics, and local routing at K equals 8">
+          <img src="assets/figures/fig_statistical_execution_authority_v4.png" width="4147" height="1394" loading="lazy" decoding="async" alt="Sealed MiniWoB results with candidate replacement, direct authorization under different guarantee semantics, and local routing at K equals 8">
           <figcaption>Sealed result overview. Four ordinary tasks receive simultaneous local certificates; score-clearing unsupported tasks route to review and external-side-effect tasks abstain.</figcaption>
         </figure>
 
@@ -643,13 +671,13 @@
           <h2 id="reader-title">Read the submitted package</h2>
           <p>The browser viewer is optional. Every document below also has a direct download link for annotation and offline review.</p>
           <div class="reader-tabs" role="tablist" aria-label="PDF selection">
-            <button class="reader-tab active" type="button" role="tab" aria-controls="pdf-reader-panel" aria-selected="true" data-pdf="assets/paper/main.pdf">Main paper</button>
-            <button class="reader-tab" type="button" role="tab" aria-controls="pdf-reader-panel" aria-selected="false" data-pdf="assets/paper/supplement.pdf">Supplement</button>
-            <button class="reader-tab" type="button" role="tab" aria-controls="pdf-reader-panel" aria-selected="false" data-pdf="assets/paper/main_with_supplement.pdf">Combined</button>
+            <button id="reader-tab-main" class="reader-tab active" type="button" role="tab" aria-controls="pdf-reader-panel" aria-selected="true" tabindex="0" data-pdf="assets/paper/main.pdf">Main paper</button>
+            <button id="reader-tab-supplement" class="reader-tab" type="button" role="tab" aria-controls="pdf-reader-panel" aria-selected="false" tabindex="-1" data-pdf="assets/paper/supplement.pdf">Supplement</button>
+            <button id="reader-tab-combined" class="reader-tab" type="button" role="tab" aria-controls="pdf-reader-panel" aria-selected="false" tabindex="-1" data-pdf="assets/paper/main_with_supplement.pdf">Combined</button>
           </div>
           <a class="download-link" id="download-link" href="assets/paper/main.pdf">Download selected PDF</a>
         </div>
-        <div class="pdf-wrap" id="pdf-reader-panel" role="tabpanel">
+        <div class="pdf-wrap" id="pdf-reader-panel" role="tabpanel" aria-labelledby="reader-tab-main" tabindex="0">
           <iframe id="pdf-viewer" title="Paper PDF viewer" src="assets/paper/main.pdf"></iframe>
         </div>
       </div>

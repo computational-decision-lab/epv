@@ -2,21 +2,43 @@
   function initPdfReader() {
     const viewer = document.getElementById('pdf-viewer');
     const download = document.getElementById('download-link');
-    const tabs = document.querySelectorAll('.reader-tab');
+    const tabs = Array.from(document.querySelectorAll('.reader-tab'));
 
     if (!viewer || !download || !tabs.length) return;
 
-    tabs.forEach(function (tab) {
+    function activatePdf(tab, focus) {
+      const pdf = tab.getAttribute('data-pdf');
+      viewer.setAttribute('src', pdf);
+      download.setAttribute('href', pdf);
+      tabs.forEach(function (item) {
+        const selected = item === tab;
+        item.classList.toggle('active', selected);
+        item.setAttribute('aria-selected', String(selected));
+        item.tabIndex = selected ? 0 : -1;
+      });
+      const panel = document.getElementById('pdf-reader-panel');
+      if (panel) panel.setAttribute('aria-labelledby', tab.id);
+      if (focus) tab.focus();
+    }
+
+    activatePdf(tabs.find(function (tab) {
+      return tab.getAttribute('aria-selected') === 'true';
+    }) || tabs[0], false);
+
+    tabs.forEach(function (tab, index) {
       tab.addEventListener('click', function () {
-        const pdf = tab.getAttribute('data-pdf');
-        viewer.setAttribute('src', pdf);
-        download.setAttribute('href', pdf);
-        tabs.forEach(function (item) {
-          item.classList.remove('active');
-          item.setAttribute('aria-selected', 'false');
-        });
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected', 'true');
+        activatePdf(tab, false);
+      });
+
+      tab.addEventListener('keydown', function (event) {
+        let nextIndex = null;
+        if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+        if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+        if (event.key === 'Home') nextIndex = 0;
+        if (event.key === 'End') nextIndex = tabs.length - 1;
+        if (nextIndex === null) return;
+        event.preventDefault();
+        activatePdf(tabs[nextIndex], true);
       });
     });
   }
