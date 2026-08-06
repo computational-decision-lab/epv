@@ -4,6 +4,8 @@ Public reviewer companion for:
 
 **Prediction Is Not Permission: Statistical Execution Authority for AI Agents**
 
+Public artifact snapshot: `2026-08-06`
+
 ## Entry Points
 
 - [Project website](https://computational-decision-lab.github.io/epv/)
