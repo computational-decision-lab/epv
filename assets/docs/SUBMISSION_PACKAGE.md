@@ -33,10 +33,10 @@ are deployment scenarios, not empirical evidence from the study.
 
 ## Verification Snapshot
 
-- Frozen research workspace: 237 tests passed, 1 skipped; 43 of 43 figure
+- Frozen research workspace: 238 tests passed, 1 skipped; 43 of 43 figure
   checks passed; readiness reported 44 of 45 checks passed, one declared
   external-evidence warning, and zero failures.
-- Site content contract: 11 checks passed.
+- Site content contract: 12 checks passed.
 - Browser interaction and responsive checks: 8 checks passed, including 320,
   390, and 1440 pixel viewport overflow tests.
 - Five visual masters verified at 3840 by 2160 RGB with no embedded metadata.
