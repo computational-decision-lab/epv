@@ -33,8 +33,11 @@ are deployment scenarios, not empirical evidence from the study.
 
 ## Verification Snapshot
 
-- Site content contract: 7 checks passed.
-- Browser interaction and responsive checks: 5 checks passed, including 320,
+- Frozen research workspace: 237 tests passed, 1 skipped; 43 of 43 figure
+  checks passed; readiness reported 44 of 45 checks passed, one declared
+  external-evidence warning, and zero failures.
+- Site content contract: 11 checks passed.
+- Browser interaction and responsive checks: 8 checks passed, including 320,
   390, and 1440 pixel viewport overflow tests.
 - Five visual masters verified at 3840 by 2160 RGB with no embedded metadata.
 - Five public WebP assets verified at 1600 by 900 RGB and under 180 KB each.
@@ -47,3 +50,7 @@ The public repository is intentionally a curated static snapshot. Private
 credentials, model-provider logs, sealed evaluation inputs, internal research
 trees, and local 4K masters are excluded. This boundary keeps the reviewer
 interface auditable without exposing restricted or machine-specific state.
+
+Full experimental source is not included in this public artifact. The GitHub
+repository exposes the Pages source, paper PDFs, selected figures, and release
+documentation; it is not a complete reproduction repository.

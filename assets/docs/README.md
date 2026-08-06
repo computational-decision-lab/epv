@@ -39,6 +39,8 @@ paper PDFs, selected figures, reviewer documentation, and optimized visual
 assets. It does not publish private model credentials, sealed evaluation data,
 provider logs, or the full internal research workspace.
 
+Full experimental source is not included in this public artifact.
+
 ## Claim Boundaries
 
 - EPV-Opt authorizes selected actions; it is not a new candidate ranker.
