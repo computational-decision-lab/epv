@@ -1,4 +1,116 @@
 (function () {
+  function initClaimTrace() {
+    const root = document.querySelector('[data-claim-trace]');
+    if (!root) return;
+
+    const tabs = Array.from(root.querySelectorAll('[data-claim-tab]'));
+    const panels = Array.from(root.querySelectorAll('[data-claim-panel]'));
+    if (!tabs.length || !panels.length) return;
+
+    function fromHash() {
+      const match = window.location.hash.match(/^#claim-(c[123])$/);
+      return match ? match[1] : tabs[0].dataset.claimTab;
+    }
+
+    function activate(id, focus, updateHash) {
+      const validId = tabs.some(function (tab) {
+        return tab.dataset.claimTab === id;
+      }) ? id : tabs[0].dataset.claimTab;
+
+      tabs.forEach(function (tab) {
+        const selected = tab.dataset.claimTab === validId;
+        tab.setAttribute('aria-selected', String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+      });
+      panels.forEach(function (panel) {
+        panel.hidden = panel.dataset.claimPanel !== validId;
+      });
+      root.classList.add('claim-trace-enhanced');
+      if (updateHash) history.replaceState(null, '', '#claim-' + validId);
+
+      const active = tabs.find(function (tab) {
+        return tab.dataset.claimTab === validId;
+      });
+      if (focus && active) active.focus();
+    }
+
+    tabs.forEach(function (tab, index) {
+      tab.addEventListener('click', function () {
+        activate(tab.dataset.claimTab, false, true);
+      });
+
+      tab.addEventListener('keydown', function (event) {
+        let next = null;
+        if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+        if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+        if (event.key === 'Home') next = 0;
+        if (event.key === 'End') next = tabs.length - 1;
+        if (next === null) return;
+        event.preventDefault();
+        activate(tabs[next].dataset.claimTab, true, true);
+      });
+    });
+
+    window.addEventListener('hashchange', function () {
+      activate(fromHash(), false, false);
+    });
+    activate(fromHash(), false, false);
+  }
+
+  function initEvidenceViews() {
+    const root = document.querySelector('[data-claim-trace]');
+    if (!root) return;
+
+    const panels = Array.from(root.querySelectorAll('[data-claim-panel]'));
+    if (!panels.length) return;
+
+    function activate(panel, view) {
+      const buttons = Array.from(panel.querySelectorAll('[data-trace-view]'));
+      const views = Array.from(panel.querySelectorAll('[data-trace-panel]'));
+      if (!buttons.length || !views.length) return;
+
+      buttons.forEach(function (button) {
+        button.setAttribute('aria-pressed', String(button.dataset.traceView === view));
+      });
+      views.forEach(function (item) {
+        item.hidden = item.dataset.tracePanel !== view;
+      });
+      panel.classList.add('trace-views-enhanced');
+    }
+
+    panels.forEach(function (panel) {
+      const initial = panel.querySelector('[data-trace-view][aria-pressed="true"]');
+      if (initial) activate(panel, initial.dataset.traceView);
+    });
+
+    root.addEventListener('click', function (event) {
+      const button = event.target.closest('[data-trace-view]');
+      if (!button || !root.contains(button)) return;
+      const panel = button.closest('[data-claim-panel]');
+      if (panel) activate(panel, button.dataset.traceView);
+    });
+  }
+
+  function initCopyCommands() {
+    const status = document.getElementById('copy-status');
+    const buttons = Array.from(document.querySelectorAll('[data-copy-command]'));
+    if (!status || !buttons.length) return;
+
+    buttons.forEach(function (button) {
+      button.addEventListener('click', async function () {
+        const target = document.getElementById(button.dataset.copyCommand);
+        if (!target) return;
+        const text = target.textContent.trim();
+        try {
+          await navigator.clipboard.writeText(text);
+          status.textContent = 'Copied reviewer check command.';
+        } catch (error) {
+          status.textContent = 'Copy unavailable; select the visible command manually.';
+        }
+      });
+    });
+  }
+
   function initMobileNavigation() {
     const toggle = document.getElementById('nav-toggle');
     const navigation = document.getElementById('reviewer-navigation');
@@ -154,6 +266,9 @@
     updateExplorer();
   }
 
+  initClaimTrace();
+  initEvidenceViews();
+  initCopyCommands();
   initMobileNavigation();
   initPdfReader();
   initScenarioTabs();
